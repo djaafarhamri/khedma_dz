@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { isEmail } = require("validator");
 
 //Sign up
-const professionalSchema = mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     email: {
       type: String,
@@ -22,9 +22,19 @@ const professionalSchema = mongoose.Schema(
     middle_name: {
       type: String,
     },
+    type: {
+      type: String,
+      required: true
+    },
+    job: {
+      type: String,
+    },
     phone_number: {
       type: String,
       required: [true, "please enter your job"],
+    },
+    profile_image: {
+      type: String,
     },
     username: {
       type: String,
@@ -49,16 +59,29 @@ const professionalSchema = mongoose.Schema(
       default: false
     }
   },
-  { collection: "professionals" }
+  { collection: "users" }
 );
 
-professionalSchema.pre("save", async function (next) {
+userSchema.pre('validate', function(next) {
+  //3, or whatever value you're checking for
+  if (this.type !== "user") {
+      return next();
+  }
+  if (this.job) {
+      return next();
+  }
+  var error = new mongoose.Error.ValidationError(this);
+  error.errors.job = new mongoose.Error.ValidatorError('job', 'job is required for status passed.', 'notvalid', this.job);
+  return next(error);
+});
+
+userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
 
-const model = mongoose.model("professionalSchema", professionalSchema);
+const model = mongoose.model("userSchema", userSchema);
 
 module.exports = model;
