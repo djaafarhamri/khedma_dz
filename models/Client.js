@@ -22,16 +22,9 @@ const professionalSchema = mongoose.Schema(
     middle_name: {
       type: String,
     },
-    job: {
-      type: String,
-      required: [true, "please enter your job"],
-    },
     phone_number: {
       type: String,
       required: [true, "please enter your job"],
-    },
-    profile_image: {
-      type: String,
     },
     username: {
       type: String,
