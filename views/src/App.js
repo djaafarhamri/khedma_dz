@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage/HomePage';
-import AuthPage from './AuthPage/AuthPage';
+import Login from './AuthPage/Login';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/auth" element={<AuthPage />} />
+        <Route exact path="/auth/login" element={<Login />} />
       </Routes>
     </div>
   );
