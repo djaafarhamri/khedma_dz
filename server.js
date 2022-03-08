@@ -39,39 +39,5 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-app.get("/fail", (req, res) => res.send("you failed to log in"));
-app.get("/good", (req, res) => {
-  console.log(req.user._json.email);
-  res.send(`welcome ${req.user._json.email}`);
-});
 
-// app.post("/test_login", async (req, res) => {
-//   console.log("trying");
-//   const { type, job } = req.body;
-//   console.log("trying 2");
-//   try {
-//     console.log("trying 3");
-//     const client = await Client.create({
-//       type1: type,
-//       job: job,
-//     }).catch(err => console.log(err.message));
-//     console.log("trying 4");
-//     res.status(200).json(client);
-//   } catch (err) {
-//     res.status(400);
-//   }
-// });
 
-app.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-app.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/fail" }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/good");
-  }
-);
