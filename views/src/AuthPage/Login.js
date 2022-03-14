@@ -16,17 +16,26 @@ import {
   GridItem,
 } from "@chakra-ui/react";
 
+const br = {
+  xl: 'grid',
+  lg: 'grid',
+  md: 'none',
+  xs: 'none'
+}
+
 export default function Login() {
   return (
     <Grid h="100vh" templateColumns="repeat(12, 1fr)" templateRows="1fr">
-      <GridItem rowStart={1} rowEnd={1}  colStart={1} colEnd={8}>
-        <Image
+      <GridItem h='100%' w='100%' bg='blue.400' d={['none', 'none', 'grid', 'grid', 'grid']} rowStart={1} rowEnd={1}  colStart={1} colEnd={8}>
+      <Text textAlign='center' fontSize={"lg"} color={"#fff"}>Image slider</Text>
+        {/* //TODO image slider
+         <Image
           boxSize="200px"
           src="https://bit.ly/dan-abramov"
           alt="Dan Abramov"
-        />
+        /> */ }
       </GridItem>
-      <GridItem rowStart={1} rowEnd={1} colStart={8} colEnd={13}>
+      <GridItem rowStart={1} rowEnd={1} colStart={[1, 1, 8, 8, 8]} colEnd={13}>
         <Flex
         width='100%'
         height='100%'
