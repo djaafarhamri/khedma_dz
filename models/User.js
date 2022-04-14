@@ -51,11 +51,46 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    type: {
+    role: {
       type: String,
-      required: true,
+      enum: ["client", "professional", "admin"],
+      default: "client",
+    },
+    bio: {
+      type: String,
+    },
+    social_media: [
+      {
+        icon: {
+          type: String,
+        },
+        name: {
+          type: String,
+        },
+        url: {
+          type: String,
+        },
+      },
+    ],
+    skills: {
+      type: [String],
+    },
+    experience: {
+      type: [String],
+    },
+    education: {
+      type: [String],
+    },
+    certifications: {
+      type: [String],
+    },
+    languages: {
+      type: [String],
     },
     job: {
+      type: String,
+    },
+    job_description: {
       type: String,
     },
     location: {
@@ -85,10 +120,28 @@ userSchema.pre("save", async function (next) {
 
 userSchema.pre("validate", function (next) {
   //3, or whatever value you're checking for
-  if (this.type !== "user") {
+  if (this.client !== "client") {
     return next();
   }
-  if ( this.job && this.location ) { 
+  if (this.job || this.services.length > 0 || this.reviews.length > 0) {
+    var error = new mongoose.Error.ValidationError(this);
+    error.errors.job = new mongoose.Error.ValidatorError(
+      "job",
+      "clients can't have jobs.",
+      "notvalid",
+      this.job
+    );
+    return next(error);
+  }
+  return next();
+});
+
+userSchema.pre("validate", function (next) {
+  //3, or whatever value you're checking for
+  if (this.type !== "professional") {
+    return next();
+  }
+  if (this.job) {
     return next();
   }
   var error = new mongoose.Error.ValidationError(this);
@@ -97,12 +150,6 @@ userSchema.pre("validate", function (next) {
     "job is required for status passed.",
     "notvalid",
     this.job
-  );
-  error.errors.location = new mongoose.Error.ValidatorError(
-    "location",
-    "location is required for status passed.",
-    "notvalid",
-    this.location
   );
   return next(error);
 });
