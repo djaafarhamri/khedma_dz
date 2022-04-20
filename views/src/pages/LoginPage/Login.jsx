@@ -1,133 +1,96 @@
 import { connect } from "react-redux";
-import { login, logout } from "../../stores/userStore/userThunk";
-import logo from '../../assets/labour.jpeg'
+import { login } from "../../stores/userStore/userThunk";
+import logo from "../../assets/labour.jpeg";
+import { useState } from "react";
 
-const Login = ({ user, onLogin, onLogout }) => {
+const Login = ({ onLogin }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   return (
-    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-md w-full space-y-8">
-        <div>
-          <img
-            class="mx-auto h-12 w-auto"
-            src={logo}
-            alt="Workflow"
-          />
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-          <p class="mt-2 text-center text-sm text-gray-600">
-            Or
-            <a
-              href="/signup"
-              class="font-medium text-[#404679] hover:text-indigo-500"
-            >
-              {" "}
-              start your 14-day free trial{" "}
-            </a>
-          </p>
+    <div className="min-h-screen flex justify-center items-center bg-white">
+      <div className="p-10 border-[1px] -mt-10 border-slate-200 rounded-md flex flex-col items-center space-y-3">
+        <div className="py-8">
+          <img width="100" className="-mt-10" src={logo} alt="" />
         </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
-          <input type="hidden" name="remember" value="true" />
-          <div class="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label for="email-address" class="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            <div>
-              <label for="password" class="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                required
-                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
+        <input
+          onChange={(e) => setUsername(e.target.value)}
+          className="p-3 border-[1px] border-slate-500 rounded-sm w-80"
+          placeholder="Username"
+        />
+        <div className="flex flex-col space-y-1">
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-3 border-[1px] border-slate-500 rounded-sm w-80"
+            placeholder="Password"
+          />
+          <p className="font-bold text-[#0070ba]">Forgot password?</p>
+        </div>
+        <div className="flex flex-col space-y-5 w-full">
+          <button
+            onClick={() => {
+              onLogin(username, password);
+            }}
+            className="w-full bg-[#0070ba] rounded-3xl p-3 text-white font-bold transition duration-200 hover:bg-[#003087]"
+          >
+            Log in
+          </button>
+          <div className="flex items-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
+            <div className="-mt-1 font-bod bg-white px-5 absolute">Or</div>
           </div>
+          <button className="w-full border-blue-900 hover:border-[#003087] hover:border-[2px] border-[1px] rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">
+            Sign Up
+          </button>
+        </div>
+        <div className="flex space-x-1 p-20 text-sm">
+          <p className="hover:underline cursor-pointer">German</p>
+          <div className="border-r-[1px] border-r-slate-300"></div>
+          <p className="font-bold hover:underline cursor-pointer">English</p>
+        </div>
+      </div>
 
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-                {" "}
-                Remember me{" "}
-              </label>
-            </div>
-
-            <div class="text-sm">
-              <a
-                href="/reset"
-                class="font-medium text-[#404679] hover:text-indigo-500"
-              >
-                {" "}
-                Forgot your password?{" "}
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#404679] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                {/* <!-- Heroicon name: solid/lock-closed --> */}
-                <svg
-                  class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-              Sign in
-            </button>
-          </div>
-        </form>
+      <div className="absolute bottom-0 w-full p-3 bg-[#F7F9FA] flex justify-center items-center space-x-3 text-[14px] font-medium text-[#666]">
+        <a
+          href="https://www.paypal.com/us/smarthelp/contact-us"
+          className="hover:underline underline-offset-1 cursor-pointer"
+        >
+          Contact Us
+        </a>
+        <a
+          href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full"
+          className="hover:underline underline-offset-1 cursor-pointer"
+        >
+          Privacy
+        </a>
+        <a
+          href="https://www.paypal.com/de/webapps/mpp/ua/legalhub-full"
+          className="hover:underline underline-offset-1 cursor-pointer"
+        >
+          Legal
+        </a>
+        <a
+          href="https://www.paypal.com/de/webapps/mpp/ua/upcoming-policies-full"
+          className="hover:underline underline-offset-1 cursor-pointer"
+        >
+          Policy{" "}
+        </a>
+        <a
+          href="https://www.paypal.com/de/webapps/mpp/country-worldwide"
+          className="hover:underline underline-offset-1 cursor-pointer"
+        >
+          Worldwide{" "}
+        </a>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (username, password) => {
       dispatch(login(username, password));
-    },
-    onLogout: () => {
-      dispatch(logout());
-    },
+    }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

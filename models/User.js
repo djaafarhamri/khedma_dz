@@ -19,9 +19,6 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "please enter your last name"],
     },
-    middle_name: {
-      type: String,
-    },
     phone_number: {
       type: String,
       required: [true, "please enter your job"],
