@@ -39,6 +39,12 @@ const serviceSchema = mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    orders: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Order",
+        },
+    ],
     times_solds: {
       type: Number,
       default: 0,
