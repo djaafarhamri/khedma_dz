@@ -1,22 +1,31 @@
 import { useState } from "react";
+import RegisterOnboarding from "./RegisterOnboarding";
+import RegisterStepOne from "./RegisterStepOne";
+import RegisterStepTwo from "./RegisterStepTwo";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [role, setRole] = useState("client");
+  const [registerData, setRegisterData] = useState({});
+  const [currIndex, setCurrIndex] = useState(0);
 
-  const [error, setError] = useState("");
+  const onNext = (stepData) => {
+    setRegisterData({ ...registerData, ...stepData });
+    setCurrIndex(currIndex + 1);
+  };
 
   return (
     <div className="h-screen flex justify-center">
-      <h1>Join as a client or a worker</h1>
+      <RegisterOnboarding
+        onFinish={() => {
+          console.log("registerData : ", registerData);
+        }}
+        currIndex={currIndex}
+        onNext={onNext}
+      >
+        <RegisterStepOne />
+        <RegisterStepTwo />
+      </RegisterOnboarding>
     </div>
-  )
-}
+  );
+};
 
 export default Register;
