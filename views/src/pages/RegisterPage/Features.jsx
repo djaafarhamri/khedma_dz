@@ -1,7 +1,8 @@
+
 const Features = () => {
     return (
     <div className="features">
-        
+
     </div>
     );
 }
