@@ -4,7 +4,7 @@ const authController = require("../Controllers/authController.js");
 const router = Router();
 
 router.post("/signup", authController.signup);
-router.post("/login", authController.login);
+router.post("/login", authController.login_post);
 router.get("/logout", authController.logout);
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/failed_auth" }), authController.google_callback);
