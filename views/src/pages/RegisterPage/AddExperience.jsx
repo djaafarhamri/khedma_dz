@@ -1,10 +1,19 @@
 import { useState } from "react";
 
-const AddExperience = ({experiences, setExperiences, setShowAddExperience}) => {
+const AddExperience = ({
+  experiences,
+  setExperiences,
+  setShowAddExperience,
+}) => {
   const [experience, setExperience] = useState({});
-    
-    return ( 
-        <div>
+
+  return (
+    <>
+      <div onClick={() => {
+        setShowAddExperience(false);
+      }} className="fixed w-screen h-screen top-[0px] left-[0px] bg-[#000]/[.5]"></div>
+
+      <div className="fixed w-[500px] h-[500px] bg-[#fff]  ">
         <h2>RegisterExperience</h2>
         <input
           type="text"
@@ -59,12 +68,17 @@ const AddExperience = ({experiences, setExperiences, setShowAddExperience}) => {
             setExperience({ ...experience, to: e.target.value });
           }}
         />
-        <button onClick={() => {
+        <button
+          onClick={() => {
             setExperiences([...experiences, experience]);
             setShowAddExperience(false);
-        }}>Add Experience</button>
+          }}
+        >
+          Add Experience
+        </button>
       </div>
-     );
-}
- 
+    </>
+  );
+};
+
 export default AddExperience;
