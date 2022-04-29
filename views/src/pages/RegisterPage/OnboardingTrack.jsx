@@ -1,7 +1,7 @@
 const OnboardingTrack = ({onBack, goToNext, error, data, track, buttonText}) => {
     console.log(`left-[0px] w-[${track}] h-2 bg-[#14a800]`);
     return ( 
-        <div className="fixed bottom-[0px] left-[0px] w-screen">
+        <div className="fixed bottom-[0px] left-[0px] w-screen bg-[#fff]">
         <div style={{width: track}} className={`left-[0px] h-2 bg-[#14a800]`}></div>
         <div className="flex justify-between px-8 py-10">
           <button
