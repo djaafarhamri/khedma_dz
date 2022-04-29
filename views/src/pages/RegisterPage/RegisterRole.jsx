@@ -2,7 +2,7 @@ import worker from "../../assets/408-worker-helmet.svg";
 import avatar from "../../assets/268-avatar-man.svg";
 import { useState } from "react";
 
-const RegisterStepOne = ({ goToNext }) => {
+const RegisterRole = ({ goToNext }) => {
   const [role, setRole] = useState(null);
 
   return (
@@ -46,4 +46,4 @@ const RegisterStepOne = ({ goToNext }) => {
   );
 };
 
-export default RegisterStepOne;
+export default RegisterRole;
