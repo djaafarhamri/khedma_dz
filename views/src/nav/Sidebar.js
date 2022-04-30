@@ -1,5 +1,7 @@
 import React , {useState} from 'react'
 import {motion} from 'framer-motion'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const variants ={
     open:{opacity:1 , x:0 , },
@@ -30,8 +32,8 @@ const Sidebar = () => {
         onClick={()=>setshow(show=>!show)}
         whileHover={ {scale:1.1} }
         whileTap={ {scale:0.9} }
-        className='bg-green-cyan z-20 fixed border-none outline-0 top-4 lef left-4 w-12 h-10 rounded-md'>
-                click
+        className=' z-20 fixed border-none outline-0 top-4 lef left-4 w-12 h-10 rounded-xl'>
+               {show ? <CloseIcon/> : <MenuIcon/>  } 
         </motion.button>
         </div>
      );
