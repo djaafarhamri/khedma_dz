@@ -26,11 +26,6 @@ const userSchema = mongoose.Schema(
     profile_image: {
       type: String,
     },
-    username: {
-      type: String,
-      required: [true, "please enter an username"],
-      unique: true,
-    },
     password: {
       type: String,
       required: [true, "please enter a password"],
@@ -72,12 +67,54 @@ const userSchema = mongoose.Schema(
     skills: {
       type: [String],
     },
-    experience: {
-      type: [String],
-    },
-    education: {
-      type: [String],
-    },
+    experience: [
+      {
+        title: {
+          type: String,
+        },
+        company: {
+          type: String,
+        },
+        location: {
+          type: String,
+        },
+        from: {
+          type: Date,
+        },
+        to: {
+          type: Date,
+        },
+        current: {
+          type: Boolean,
+        },
+        description: {
+          type: String,
+        },
+      },
+    ],
+    education: [{
+      school: {
+        type: String,
+      },
+      degree: {
+        type: String,
+      },
+      fieldofstudy: {
+        type: String,
+      },
+      from: {
+        type: Date,
+      },
+      to: {
+        type: Date,
+      },
+      current: {
+        type: Boolean,
+      },
+      description: {
+        type: String,
+      },
+    }],
     certifications: {
       type: [String],
     },
@@ -152,8 +189,8 @@ userSchema.pre("validate", function (next) {
 });
 
 //login
-userSchema.statics.login = async function (username, password) {
-  const user = await this.findOne({ username });
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email });
   if (user) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
@@ -161,7 +198,7 @@ userSchema.statics.login = async function (username, password) {
     }
     throw Error("incorrect password");
   }
-  throw Error("incorrect username");
+  throw Error("incorrect email");
 };
 
 const model = mongoose.model("userSchema", userSchema);
