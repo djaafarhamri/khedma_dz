@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-const AddExperience = ({
+const EditExperience = ({
+    experienceToedit,
   experiences,
   setExperiences,
-  setShowAddExperience,
+  setShowEditExperience,
 }) => {
-  const [experience, setExperience] = useState({});
+  const [experience, setExperience] = useState(experienceToedit);
 
   return (
     <>
       <div
         onClick={() => {
-          setShowAddExperience(false);
+          setShowEditExperience(false);
         }}
         className="fixed w-screen h-screen top-[0px] left-[0px] bg-[#000]/[.5]"
       ></div>
@@ -26,6 +27,7 @@ const AddExperience = ({
             <input
               className="w-[80%] p-2 border border-solid"
               type="text"
+              value={experienceToedit.title}
               placeholder="ex. Software Engineer"
               onChange={(e) => {
                 setExperience({ ...experience, title: e.target.value });
@@ -37,6 +39,7 @@ const AddExperience = ({
             <input
               className="w-[80%] p-2 border border-solid"
               type="text"
+                value={experienceToedit.company}
               placeholder="ex. Google"
               onChange={(e) => {
                 setExperience({ ...experience, company: e.target.value });
@@ -48,6 +51,7 @@ const AddExperience = ({
             <input
               className="w-[80%] p-2 border border-solid"
               type="text"
+                value={experienceToedit.location}
               placeholder="ex. Mountain View, CA"
               onChange={(e) => {
                 setExperience({ ...experience, location: e.target.value });
@@ -60,6 +64,7 @@ const AddExperience = ({
               <input
                 className="w-[100%] p-2 border border-solid"
                 type="date"
+                value={experienceToedit.from}
                 placeholder="from"
                 onChange={(e) => {
                   setExperience({ ...experience, from: e.target.value });
@@ -71,6 +76,7 @@ const AddExperience = ({
               <input
                 className="w-[100%] p-2 border border-solid"
                 type="date"
+                value={experienceToedit.to}
                 placeholder="to"
                 onChange={(e) => {
                   setExperience({ ...experience, to: e.target.value });
@@ -83,6 +89,7 @@ const AddExperience = ({
               // checkbox material style
               className="mr-2 w-4 h-4"
               type="checkbox"
+              value={experienceToedit.current}
               onChange={(e) => {
                 setExperience({ ...experience, current: e.target.checked });
               }}
@@ -95,6 +102,7 @@ const AddExperience = ({
             <textarea
               className="w-[80%] p-2 border border-solid"
               placeholder="ex. I was a software engineer at Google"
+                value={experienceToedit.description}
               onChange={(e) => {
                 setExperience({ ...experience, description: e.target.value });
               }}
@@ -107,11 +115,20 @@ const AddExperience = ({
           <button
           className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-2 p-2 w-48 font-bold"
             onClick={() => {
-              setExperiences([...experiences, experience]);
-              setShowAddExperience(false);
+                // modify an experiance in experiences array by title
+                const newExperiences = experiences.map((e) => {
+                    if (e.title === experienceToedit.title) {
+                        console.log(true)
+                        return e = experience;
+                    }
+                    return experience;
+                });
+                console.log(newExperiences);
+                setExperiences(newExperiences);
+                setShowEditExperience(false);
             }}
           >
-            Add Experience
+            Edit Experience
           </button>
         </div>
       </div>
@@ -119,4 +136,4 @@ const AddExperience = ({
   );
 };
 
-export default AddExperience;
+export default EditExperience;
