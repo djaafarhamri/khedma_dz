@@ -51,19 +51,6 @@ const userSchema = mongoose.Schema(
     bio: {
       type: String,
     },
-    social_media: [
-      {
-        icon: {
-          type: String,
-        },
-        name: {
-          type: String,
-        },
-        url: {
-          type: String,
-        },
-      },
-    ],
     skills: {
       type: [String],
     },
@@ -116,9 +103,6 @@ const userSchema = mongoose.Schema(
       },
     }],
     certifications: {
-      type: [String],
-    },
-    languages: {
       type: [String],
     },
     job: {

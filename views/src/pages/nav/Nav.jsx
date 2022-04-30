@@ -1,9 +1,6 @@
-import { useState } from "react";
 import Sidebar from "./Sidebar";
 
 const Nav = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
-
   return (
     <>
     <div className="shadow ">
