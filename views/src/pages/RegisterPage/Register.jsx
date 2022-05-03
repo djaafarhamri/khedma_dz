@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RegisterEducation from "./RegisterEducation";
 import RegisterExperience from "./RegisterExperience";
 import RegisterForm from "./RegisterForm";
 import RegisterJob from "./RegisterJob";
@@ -32,6 +33,7 @@ const Register = () => {
         <RegisterForm />
         {registerData.role === "professional" && <RegisterJob />}
         {registerData.role === "professional" && <RegisterExperience />}
+        {registerData.role === "professional" && <RegisterEducation />}
       </RegisterOnboarding>
     </div>
   );

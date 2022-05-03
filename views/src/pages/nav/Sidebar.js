@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import {motion} from 'framer-motion'
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 
 const variants ={
     open:{opacity:1 , x:0 , },
@@ -10,7 +10,7 @@ const variants ={
 const Sidebar = () => {
     const [show,setshow]= useState(false)
     return ( 
-        <div className='font-inter'>
+        <div className='font-inter md:hidden'>
         <motion.nav 
         animate={show ? "open" : "closed"}
         variants={variants}

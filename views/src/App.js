@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/HomePage/Home';
 import Login from './pages/LoginPage/Login';
-import Nav from './nav/Nav';
+import Nav from './pages/nav/Nav';
 import Profile from './pages/ProfilePage/Profile';
 import Register from './pages/RegisterPage/Register';
-import Landing from './landing-page/Landing';
+import Landing from './pages/landing-page/Landing';
 
 function App() {
   return (
