@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
+import Search from "./Search";
 
 const Nav = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -14,6 +15,7 @@ const Nav = () => {
          <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>Contact us</p>
         <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>About us</p>
        </div>
+       <Search/>
      </div>
      </div>
     </>

@@ -10,6 +10,7 @@ module.exports = {
       'dark-blue': '#0c1232',
       'black': '#000000',
       'white': '#ffffff',
+      'slate':'rgb(226 232 240)',
 
     },
     fontFamily: {
