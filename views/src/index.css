@@ -15,5 +15,5 @@
 @apply text-3xl text-dark-blue ease-in-out duration-300 
 }
 .btn{
-@apply text-2xl text-dark-blue bg-green-cyan rounded-lg font-inter font-semibold pt-0.5 px-1 mx-2
+@apply text-2xl text-white bg-green-cyan rounded-3xl font-inter font-medium py-0.5 px-5 mx-1
 }
