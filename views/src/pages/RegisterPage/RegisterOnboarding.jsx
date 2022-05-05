@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import RegisterDetails from "./RegisterDetails";
 
-const RegisterOnboarding = ({ children, onFinish, currIndex, onNext, onBack }) => {
+const RegisterOnboarding = ({ children, onFinish, currIndex, onNext, onBack, onSubmit }) => {
   const nav = useNavigate()
   const goToNext = (stepData) => {
     onNext(stepData);
@@ -14,14 +15,7 @@ const RegisterOnboarding = ({ children, onFinish, currIndex, onNext, onBack }) =
 
   return (
     <div>
-      <button
-        onClick={() => {
-          onFinish();
-          nav("/");
-        }}
-      >
-        submit
-      </button>
+      <RegisterDetails submit={onFinish} onSubmit={onSubmit} />
     </div>
   );
 };
