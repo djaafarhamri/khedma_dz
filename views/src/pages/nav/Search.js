@@ -22,7 +22,7 @@ const Search = () => {
         whileHover={ {scale:1.1} }
         whileTap={ {scale:0.9} }
         className=' z-10 relative ml-44'>
-               {appear ? <CloseIcon/> : <SearchIcon/>  } 
+               {appear ? <CloseIcon/> : <SearchIcon fontSize="large"/>  } 
                
         </motion.button>     
     </div> );

@@ -9,8 +9,11 @@
 }
 
 .li-nav{
-@apply cursor-pointer leading-loose px-6 py-0 border-y border-slate
+@apply cursor-pointer leading-loose px-6 py-0 border-y border-slate hover:bg-green-cyan ease-in-out duration-500
 }
 .li-a{
-@apply text-base text-dark-blue ease-in-out duration-300 hover:text-green-cyan
+@apply text-3xl text-dark-blue ease-in-out duration-300 
+}
+.btn{
+@apply text-2xl text-dark-blue bg-green-cyan rounded-lg font-inter font-semibold pt-0.5 px-1 mx-2
 }
