@@ -6,7 +6,7 @@ const RegisterRole = ({ goToNext }) => {
   const [role, setRole] = useState(null);
 
   return (
-    <div className="flex flex-col items-center justify-center lg:w-[60%] w-[100%] h-fit m-10 border border-solid">
+    <div  className="flex flex-col items-center justify-center lg:w-[60%] w-[100%] h-fit m-10 border border-solid rounded-xl">
       <h1 className="lg:text-3xl text-xl mt-10 ">Join as a client or professional</h1>
       <div className="flex flex-wrap m-10 justify-center">
         <div

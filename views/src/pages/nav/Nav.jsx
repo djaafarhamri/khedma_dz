@@ -1,5 +1,6 @@
 import Sidebar from "./Sidebar";
 import Search from "./Search";
+import Btn from "./Btn";
 
 const Nav = () => {
   return (
@@ -12,8 +13,11 @@ const Nav = () => {
          <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>Contact us</p>
         <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>About us</p>
        </div>
-       <div className=" flex basis-1/5 ">
+       <div className="hidden md:flex basis-1/5 ">
        <Search />
+       </div>
+       <div className="hidden md:flex basis-4/5 justify-end ">
+      <Btn/>
        </div>
        
      </div>
