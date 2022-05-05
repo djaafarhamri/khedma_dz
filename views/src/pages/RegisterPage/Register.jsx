@@ -15,6 +15,11 @@ const Register = () => {
     setCurrIndex(currIndex + 1);
   };
 
+  const onSubmit = (stepData) => {
+    console.log('submited');
+    setRegisterData({ ...registerData, ...stepData });
+  };
+
   const onBack = (stepData) => {
     setCurrIndex(currIndex - 1);
   };
@@ -24,10 +29,12 @@ const Register = () => {
       <RegisterOnboarding
         onFinish={() => {
           console.log("registerData : ", registerData);
+          console.log("photo : ", registerData.photo);
         }}
         currIndex={currIndex}
         onNext={onNext}
         onBack={onBack}
+        onSubmit={onSubmit}
       >
         <RegisterRole />
         <RegisterForm />
