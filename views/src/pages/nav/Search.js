@@ -8,15 +8,15 @@ const Search = () => {
     const [appear, appearance]=useState(false);
     const variants ={
         open:{opacity:1 ,   },
-        closed:{opacity:0 , x:"-100%"}
+        closed:{opacity:0 , }
     }
     return ( 
     <div>
-       <motion.input 
+       {appear &&<motion.input 
          animate={appear ? "open" : "closed"}
         variants={variants}
         className="absolute  z-10  h-7 w-48 border-b-2 outline-none"
-        placeholder="Search..."/>
+        placeholder="Search..."/>}
 <motion.button
         onClick={()=>appearance(appear=>!appear)}
         whileHover={ {scale:1.1} }

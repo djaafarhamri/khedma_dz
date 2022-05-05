@@ -10,13 +10,12 @@ const Nav = () => {
        <Sidebar/>
        <div className='text-3xl text-dark-blue font-bold'> Khedma </div>
        <div className='hidden md:flex basis-1/3 pt-2 '>
-         <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>Contact us</p>
-        <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg'>About us</p>
+         <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg cursor-pointer'>Contact us</p>
+        <p className='pl-5 hover:text-green-cyan ease-in-out duration-500 text-lg cursor-pointer'>About us</p>
        </div>
-       <div className="hidden md:flex basis-1/5 ">
+
+       <div className="hidden md:flex basis-full justify-end ">
        <Search />
-       </div>
-       <div className="hidden md:flex basis-4/5 justify-end ">
       <Btn/>
        </div>
        
