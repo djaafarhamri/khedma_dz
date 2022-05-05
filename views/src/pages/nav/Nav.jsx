@@ -2,11 +2,17 @@ import Sidebar from "./Sidebar";
 import Search from "./Search";
 import Btn from "./Btn";
 
-const Nav = () => {
-  const isLogin =
-    window.location.pathname.toLocaleLowerCase() === "/login" ||
-    window.location.pathname.toLocaleLowerCase() === "/register";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
+const Nav = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  const location = useLocation()
+  useEffect(() => {
+    setIsLogin(
+      location.pathname.toLocaleLowerCase() === "/login" ||
+      location.pathname.toLocaleLowerCase() === "/register");
+  }, [location]);
   return (
     <>
       <div className="shadow ">
