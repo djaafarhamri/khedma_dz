@@ -1,11 +1,24 @@
-import { Stack, Divider } from "@mui/material";
-import {React,useEffect} from "react";
+import { Stack, Divider, Badge,Menu,MenuItem ,IconButton,Avatar } from "@mui/material";
+import {useEffect ,useState} from "react";
 import { Link } from "react-router-dom";
+import MailIcon from '@mui/icons-material/Mail';
+import * as React from 'react'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Btn = () => {
+   const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
     return ( 
         <div>
+           
             <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
             
             <Link to="/Login"  className="" >
@@ -15,12 +28,39 @@ const Btn = () => {
                <button className="btn">Sign up</button> 
             </Link>
             </Stack>
+            <Stack direction="row" spacing={2}>
+               <Badge badgeContent={5} color="error" >
+                  <MailIcon color="#0c1232" fontSize="large" className="cursor-pointer"/>
+               </Badge>
+               <IconButton
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <Avatar alt="Remy Sharp" src=""> <AccountCircleIcon fontSize="large"/> </Avatar>
+      </IconButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+            </Stack>
            
         
       
          
         </div>
      );
-}
+    }
  
 export default Btn;
