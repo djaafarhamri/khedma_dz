@@ -3,30 +3,39 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports.signup = async (req, res) => {
+  console.log("signup data : ", req.body);
   const {
     email,
     first_name,
     last_name,
-    middle_name,
-    type,
-    job,
     phone_number,
     profile_image,
-    username,
     password,
+    role,
+    bio,
+    skills,
+    experience,
+    education,
+    job,
+    job_description,
+    location,
   } = req.body;
   try {
     const user = await User.create({
       email,
       first_name,
       last_name,
-      middle_name,
-      type,
-      job,
       phone_number,
       profile_image,
-      username,
       password,
+      role,
+      bio,
+      skills,
+      experience,
+      education,
+      job,
+      job_description,
+      location,
     });
     res.status(200).json({ user: user._id });
   } catch (err) {

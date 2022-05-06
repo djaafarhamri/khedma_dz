@@ -30,3 +30,15 @@ export const logout = () => async (dispatch) => {
       console.log(err);
     });
 };
+
+export const register = (data) => async (dispatch) => {
+  console.log('dispatching register');
+  await axios
+    .post("http://localhost:4000/signup", data) //withCredentials: true
+    .then((res) => {
+      console.log('done');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
