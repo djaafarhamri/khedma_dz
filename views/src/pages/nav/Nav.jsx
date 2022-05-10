@@ -1,24 +1,33 @@
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 import Btn from "./Btn";
-
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const Nav = () => {
   const [isLogin, setIsLogin] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
+  const nav = useNavigate();
   useEffect(() => {
     setIsLogin(
       location.pathname.toLocaleLowerCase() === "/login" ||
-      location.pathname.toLocaleLowerCase() === "/register");
+        location.pathname.toLocaleLowerCase() === "/register"
+    );
   }, [location]);
   return (
     <>
       <div className="shadow z-50 ">
         <div className="flex mx-16 mt-4 mb-8 font-inter pb-2">
           <Sidebar />
-          <div className="text-3xl text-dark-blue font-bold"> Khedma </div>
+          <div
+            className="text-3xl text-dark-blue font-bold cursor-pointer"
+            onClick={() => {
+              nav("/");
+            }}
+          >
+            {" "}
+            Khedma{" "}
+          </div>
           <div
             className={`hidden basis-1/3 pt-2 ${
               isLogin ? "md:hidden" : "md:flex"

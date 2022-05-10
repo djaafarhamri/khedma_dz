@@ -7,11 +7,12 @@ import RegisterOnboarding from "./RegisterOnboarding";
 import RegisterRole from "./RegisterRole";
 import { register } from "../../stores/userStore/userThunk";
 import { connect } from 'react-redux'
+import { useNavigate } from "react-router";
 
 const Register = ({signUp}) => {
   const [registerData, setRegisterData] = useState({});
   const [currIndex, setCurrIndex] = useState(0);
-
+  const nav = useNavigate();
 
   const onNext = (stepData) => {
     setRegisterData({ ...registerData, ...stepData });
@@ -20,7 +21,10 @@ const Register = ({signUp}) => {
 
   const onSubmit = (stepData) => {
     console.log('submited');
-    setRegisterData({ ...registerData, ...stepData });
+    signUp({...registerData, ...stepData}, (cb) => {
+      cb ? nav('/') : alert('error');
+    }
+    )
   };
 
   const onBack = () => {
@@ -33,7 +37,6 @@ const Register = ({signUp}) => {
         onFinish={() => {
           console.log("registerData : ", registerData);
           console.log("photo : ", registerData.photo);
-          signUp(registerData);
         }}
         currIndex={currIndex}
         onNext={onNext}
@@ -56,7 +59,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  signUp: data => dispatch(register())
+  signUp: (data, cb) => dispatch(register(data, cb))
 })
 
 

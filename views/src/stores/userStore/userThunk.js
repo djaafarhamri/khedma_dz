@@ -31,14 +31,16 @@ export const logout = () => async (dispatch) => {
     });
 };
 
-export const register = (data) => async (dispatch) => {
-  console.log('dispatching register');
+export const register = (data, cb) => async (dispatch) => {
+  console.log('dispatching register: ', data);
   await axios
     .post("http://localhost:4000/signup", data) //withCredentials: true
     .then((res) => {
+      cb(true)
       console.log('done');
     })
     .catch((err) => {
+      cb(false)
       console.log(err);
     });
 };

@@ -4,11 +4,12 @@ dotenv.config();
 
 module.exports.signup = async (req, res) => {
   console.log("signup data : ", req.body);
+  console.log("email : ", req.body.email);
   const {
     email,
-    first_name,
-    last_name,
-    phone_number,
+    firstName,
+    lastName,
+    phone,
     profile_image,
     password,
     role,
@@ -23,10 +24,9 @@ module.exports.signup = async (req, res) => {
   try {
     const user = await User.create({
       email,
-      first_name,
-      last_name,
-      phone_number,
-      profile_image,
+      first_name: firstName,
+      last_name: lastName,
+      phone_number: phone,
       password,
       role,
       bio,
@@ -39,8 +39,9 @@ module.exports.signup = async (req, res) => {
     });
     res.status(200).json({ user: user._id });
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    console.log(err);
+    res.status(400).json({ err });
   }
 };
 

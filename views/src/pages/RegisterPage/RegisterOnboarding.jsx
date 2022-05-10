@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import RegisterDetails from "./RegisterDetails";
 
 const RegisterOnboarding = ({ children, onFinish, currIndex, onNext, onBack, onSubmit }) => {
