@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config();
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
 const authRoute = require("./routes/authRoute");
-require("./passport-setup");
+// require("./passport-setup");
 
 const PORT = process.env.PORT || 4000;
 app.use(
@@ -33,22 +33,14 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(
-  cookieSession({
-    name: "khedma-user",
-    keys: ["key1"],
-
-    // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  })
-);
+app.use(cookieParser());
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(express.static("public"));
 app.use(express.json());
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use(authRoute);
 
@@ -66,4 +58,3 @@ mongoose
   .catch((err) => console.log(err));
 
 
-app.use(authRoute);

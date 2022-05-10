@@ -45,7 +45,7 @@ const Nav = () => {
               isLogin ? "md:hidden" : "md:flex"
             } basis-full justify-end`}
           >
-            {!isLogin && <Search />}
+            <Search />
             <Btn />
           </div>
         </div>

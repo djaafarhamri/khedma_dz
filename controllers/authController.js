@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -44,13 +45,26 @@ module.exports.signup = async (req, res) => {
     res.status(400).json({ err });
   }
 };
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: maxAge,
+  });
+};
 
 module.exports.login_post = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
+  console.log("login data : ", req.body);
   try {
-    const user = await User.login(username, password);
-    res.status(200).json({ user: user });
+    const user = await User.login(email, password);
+    console.log("user : ", user);
+    const token = createToken(user._id);
+    console.log("token : ", token);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });  
+    console.log("done 1");
+    res.status(200).json({ user: user._id });
   } catch (err) {
+    console.log('err : ', err);
     res.status(400).json(err);
   }
 };
@@ -73,3 +87,16 @@ module.exports.success_auth = (req, res) => {
   console.log(req.user._json.email);
   res.json(req.user._json.email);
 };
+
+module.exports.authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    console.log(err);
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}

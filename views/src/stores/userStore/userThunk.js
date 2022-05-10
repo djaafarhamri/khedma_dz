@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const login = (username, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   await axios
     .post(
       "http://localhost:4000/login",
-      { username, password },
-      { withCredentials: true }
+      { email, password },
+      { withCredentials: true, credentials: 'include' }
     )
     .then((res) => {
       dispatch({

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
   const [error, setError] = useState("");
@@ -16,7 +16,7 @@ const Login = ({ onLogin }) => {
         {/* login form */}
         <input
           onChange={(e) => {
-            setUsername(e.target.value);
+            setEmail(e.target.value);
           }}
           className="w-[80%] py-2 px-4 m-3 border border-solid"
           type="email"
@@ -33,8 +33,8 @@ const Login = ({ onLogin }) => {
         <button
           className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-10 p-2 w-64 font-bold"
           onClick={() =>
-            username && password
-              ? onLogin(username, password)
+            email && password
+              ? onLogin(email, password)
               : alert("Please fill out all fields")
           }
         >
@@ -55,8 +55,8 @@ const Login = ({ onLogin }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (username, password) => {
-      dispatch(login(username, password));
+    onLogin: (email, password) => {
+      dispatch(login(email, password));
     },
   };
 };
