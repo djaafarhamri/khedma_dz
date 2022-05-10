@@ -153,7 +153,7 @@ userSchema.pre("validate", function (next) {
   }
   return next();
 });
-
+ 
 userSchema.pre("validate", function (next) {
   //3, or whatever value you're checking for
   if (this.type !== "professional") {

@@ -1,3 +1,4 @@
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -11,6 +12,7 @@ module.exports = {
       'black': '#000000',
       'white': '#ffffff',
       'slate':'rgb(226 232 240)',
+
 
     },
     fontFamily: {
