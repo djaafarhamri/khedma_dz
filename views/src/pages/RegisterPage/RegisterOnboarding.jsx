@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import RegisterDetails from "./RegisterDetails";
 
 const RegisterOnboarding = ({ children, onFinish, currIndex, onNext, onBack, onSubmit }) => {
-  const nav = useNavigate()
   const goToNext = (stepData) => {
     onNext(stepData);
   };

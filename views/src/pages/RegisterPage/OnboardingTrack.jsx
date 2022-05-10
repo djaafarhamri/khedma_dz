@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 
 const OnboardingTrack = ({
   onBack,
@@ -11,7 +10,6 @@ const OnboardingTrack = ({
   onSubmit,
   submit,
 }) => {
-  const nav = useNavigate()
   return (
     <div className="fixed bottom-[0px] left-[0px] w-screen bg-[#fff]">
       <div
@@ -31,7 +29,6 @@ const OnboardingTrack = ({
             onClick={() => {
               onSubmit(data);
               submit()
-              nav("/")
             }}
           >
             {buttonText}

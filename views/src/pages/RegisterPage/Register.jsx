@@ -5,10 +5,13 @@ import RegisterForm from "./RegisterForm";
 import RegisterJob from "./RegisterJob";
 import RegisterOnboarding from "./RegisterOnboarding";
 import RegisterRole from "./RegisterRole";
+import { register } from "../../stores/userStore/userThunk";
+import { connect } from 'react-redux'
 
-const Register = () => {
+const Register = ({signUp}) => {
   const [registerData, setRegisterData] = useState({});
   const [currIndex, setCurrIndex] = useState(0);
+
 
   const onNext = (stepData) => {
     setRegisterData({ ...registerData, ...stepData });
@@ -20,7 +23,7 @@ const Register = () => {
     setRegisterData({ ...registerData, ...stepData });
   };
 
-  const onBack = (stepData) => {
+  const onBack = () => {
     setCurrIndex(currIndex - 1);
   };
 
@@ -30,6 +33,7 @@ const Register = () => {
         onFinish={() => {
           console.log("registerData : ", registerData);
           console.log("photo : ", registerData.photo);
+          signUp(registerData);
         }}
         currIndex={currIndex}
         onNext={onNext}
@@ -46,4 +50,17 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  signUp: data => dispatch(register())
+})
+
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
