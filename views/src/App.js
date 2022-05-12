@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path='/' element={<Landing/>}/>
-        <Route exact path="/profile/:username" element={<Profile />} />
+        <Route exact path="/profile/:_id" element={<Profile />} />
       </Routes>
     </div>
   );

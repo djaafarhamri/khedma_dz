@@ -85,3 +85,29 @@ module.exports.get_service = async (req, res) => {
     res.status(400).json({ errors });
   }
 };
+
+
+  module.exports.getServices = async (req, res) => {
+    try {
+      if (
+        req.query.search !== null &&
+        req.query.search !== "" &&
+        req.query.search !== undefined &&
+        req.query.search !== "null"
+      ) {
+        const regex = new RegExp(escapeRegex(req.query.search), "gi");
+        let services = await Service.find({
+          title: regex,
+        });
+
+        res.status(200).json(services);
+      } else {
+        console.log("not search");
+          let services = await Service.find();
+          res.status(200).json(services);
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(404).json("no services found");
+    }
+  };

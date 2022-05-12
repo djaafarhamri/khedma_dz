@@ -44,3 +44,15 @@ export const register = (data, cb) => async (dispatch) => {
       console.log(err);
     });
 };
+// get user
+export const getUser = (id) => async (dispatch) => {
+  await axios
+    .get(`http://localhost:4000/get_user/${id}`)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    }
+    );
+}

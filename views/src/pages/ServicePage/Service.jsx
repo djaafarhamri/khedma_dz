@@ -1,17 +1,17 @@
 import { useParams } from "react-router";
 import { useDataSource } from "../../hooks/useDataSource";
 
-const Profile = () => {
+const Service = () => {
   const { _id } = useParams();
-  const user = useDataSource(`http://localhost:4000/get_user/${_id}`).data.user;
+  const service = useDataSource(`http://localhost:4000/get_service/${_id}`).data.service;
 
-  return user ? (
+  return service ? (
     <div className="flex">Not found</div>
   ) : (
     <div className="profile bg-gray-200 font-inter max-h-screen text-dark-blue ">
-      <div className="grid">{user}</div>
+      <div className="grid">{service}</div>
     </div>
   );
 };
 
-export default Profile;
+export default Service;
