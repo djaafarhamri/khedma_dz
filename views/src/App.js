@@ -5,6 +5,7 @@ import Nav from './pages/nav/Nav';
 import Profile from './pages/ProfilePage/Profile';
 import Register from './pages/RegisterPage/Register';
 import Landing from './pages/landing-page/Landing';
+import Chat from './pages/ChatPage/Chat';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path='/' element={<Landing/>}/>
         <Route exact path="/profile/:_id" element={<Profile />} />
+        <Route exact path="/chat" element={<Chat />} />
       </Routes>
     </div>
   );

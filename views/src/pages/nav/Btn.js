@@ -7,7 +7,6 @@ import {
   IconButton,
   Avatar,
 } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MailIcon from "@mui/icons-material/Mail";
 import * as React from "react";

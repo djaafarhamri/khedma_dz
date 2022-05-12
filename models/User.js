@@ -126,6 +126,18 @@ const userSchema = mongoose.Schema(
         ref: "Review",
       },
     ],
+    orders: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
+    messengers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Messenger",
+      },
+    ],
   },
   { collection: "users" }
 );

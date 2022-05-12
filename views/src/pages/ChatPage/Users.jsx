@@ -1,16 +1,24 @@
 import { useDataSource } from "../../hooks/useDataSource";
 import User from "./User";
+import { connect } from "react-redux";
 
-const Users = () => {
-  const users = useDataSource(`http://localhost:4000/get_users`).data.users;
+const Users = ({ user, setMessenger }) => {
+  const users = useDataSource(`http://localhost:4000/get_users/:${user}`).data
+    .users;
   return (
     <div>
       <input type="text" placeholder="searsh" />
-      {users?.map((user, key) => (
-        <User key={key} user={user} />
+      {users?.map((u, key) => (
+        <div onClick={() => {setMessenger(u)}}>
+          <User key={key} user={u} />
+        </div>
       ))}
     </div>
   );
 };
 
-export default Users;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(Users);
