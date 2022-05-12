@@ -28,11 +28,11 @@ const Btn = ({ user }) => {
     <div>
       {user ? (
         <Stack direction="row" spacing={2}>
-          <Badge badgeContent={5} color="error">
+          <Badge badgeContent={5} color="error" className="mt-2">
             <MailIcon
               color="#0c1232"
               fontSize="large"
-              className="cursor-pointer"
+              className="cursor-pointer "
             />
           </Badge>
           <IconButton

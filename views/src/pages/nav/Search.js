@@ -12,7 +12,7 @@ const Search = () => {
     }
   
   return (
-    <div>
+    <div className="mt-2">
 
       {appear && (
         <motion.input
@@ -28,7 +28,7 @@ const Search = () => {
         whileTap={{ scale: 0.9 }}
         className=" z-10 relative ml-44"
       >
-        {appear ? <CloseIcon /> : <SearchIcon fontSize="large"/>}
+        {appear ? <CloseIcon /> : <SearchIcon fontSize="large" />}
       </motion.button>
     </div>
   );

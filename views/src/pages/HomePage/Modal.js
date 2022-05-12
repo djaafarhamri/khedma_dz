@@ -9,7 +9,7 @@ const Modal = ({ setModalOn, setChoice }) => {
         setModalOn(false)
     }
     return ( 
-        <div className="   bg-slate opacity-80 fixed inset-0 z-40  ">
+        <div className="   bg-amber-50 opacity-80 fixed inset-0 z-40  ">
         <div className="flex h-screen justify-center items-center ">
   
                   <div className="flex-col justify-center  bg-white py-12 px-24 border-4 border-dark-blue rounded-xl ">

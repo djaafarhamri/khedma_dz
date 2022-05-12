@@ -16,8 +16,8 @@ const Nav = () => {
   }, [location]);
   return (
     <>
-      <div className="shadow z-50 ">
-        <div className="flex mx-16 mt-4 mb-8 font-inter pb-2">
+      <div className="shadow z-50  ">
+        <div className="flex mx-16 mt-4  font-inter pb-2">
           <Sidebar />
           <div
             className="text-3xl text-dark-blue font-bold cursor-pointer"
