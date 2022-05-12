@@ -1,9 +1,9 @@
 
 
-const Card = () => {
+const Card = ({key, service}) => {
    
     return ( 
-        <div class="antialiased  text-dark-blue  p-6">
+        <div key={key} class="antialiased  text-dark-blue  p-6">
         <div class="container mx-auto">
           <div class="flex flex-wrap -mx-4">
             <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
@@ -16,9 +16,12 @@ const Card = () => {
               <div class="p-4">
                 <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">Worker Name</span>
                 <h2 class="mt-2 mb-2  font-bold">programmer</h2>
+                {/* <h2 class="mt-2 mb-2  font-bold">{service.title}</h2> */}
                 <p class="text-sm">Description: Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                {/* <p class="text-sm">Description: {service.description}</p> */}
                 <div class="mt-3 flex items-center">
                   <span class="text-sm font-semibold">ab</span>&nbsp;<span class="font-bold text-xl">45,00</span>&nbsp;<span class="text-sm font-semibold">€</span>
+                  {/* <span class="text-sm font-semibold">ab</span>&nbsp;<span class="font-bold text-xl">{service.price}</span>&nbsp;<span class="text-sm font-semibold">€</span> */}
                 </div>
               </div>
               <div class="p-4 border-t border-b text-xs text-gray-700">
