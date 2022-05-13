@@ -6,6 +6,7 @@ import Profile from './pages/ProfilePage/Profile';
 import Register from './pages/RegisterPage/Register';
 import Landing from './pages/landing-page/Landing';
 import Chat from './pages/ChatPage/Chat';
+import Admin from './pages/AdminPage/Admin';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/' element={<Landing/>}/>
         <Route exact path="/profile/:_id" element={<Profile />} />
         <Route exact path="/chat" element={<Chat />} />
+        <Route exact path="/admin" element={<Admin />} />
       </Routes>
     </div>
   );

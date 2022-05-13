@@ -1,6 +1,6 @@
 // messenger mongoose shema:
 const mongoose = require("mongoose");
-const messengersSchema = mongoose.Schema(
+const messengerSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -43,6 +43,6 @@ const messengersSchema = mongoose.Schema(
   }
 );
 
-const model = mongoose.model("messengerSchema", messengersSchema);
+const model = mongoose.model("messengerSchema", messengerSchema);
 
 module.exports = model;
