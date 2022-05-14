@@ -27,7 +27,7 @@ const Btn = ({ user, onLogout }) => {
   };
   const theme = {
     spacing: 1,
-  }
+  };
 
   const handleProfile = () => {
     nav("/profile/" + user._id);
@@ -50,16 +50,15 @@ const Btn = ({ user, onLogout }) => {
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
-            onClick={handleClick} 
-            
+            onClick={handleClick}
           >
-            <Avatar alt="" src="" >
+            <Avatar alt="" src="">
               {" "}
               <AccountCircleIcon fontSize="large" />{" "}
             </Avatar>
           </IconButton>
           <Menu
-            sx={{mr:5}}
+            sx={{ mr: 5 }}
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -67,13 +66,12 @@ const Btn = ({ user, onLogout }) => {
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
-            
           >
             <MenuItem onClick={handleProfile}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem
               onClick={() => {
-                onLogout(nav, setAnchorEl);
+                onLogout(nav);
               }}
             >
               Logout
@@ -94,7 +92,7 @@ const Btn = ({ user, onLogout }) => {
           </Link>
         </Stack>
       )}
-      {user.role === "professional" && (
+      {user?.role === "professional" && (
         <button className="btn">Add Service</button>
       )}
     </div>
@@ -108,7 +106,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogout: (nav, setAnchorEl) => {
-      dispatch(logout(nav, setAnchorEl));
+      dispatch(logout(nav));
     },
   };
 };

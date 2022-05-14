@@ -22,14 +22,13 @@ export const login = (email, password, nav) => async (dispatch) => {
     });
 };
 
-export const logout = (nav, setAnchorEl) => async (dispatch) => {
+export const logout = (nav) => async (dispatch) => {
   await axios
     .get("http://localhost:4000/logout", { withCredentials: true })
     .then((res) => {
       dispatch({
         type: "LOGOUT_USER",
       });
-      setAnchorEl(null);
       nav("/");
     })
     .catch((err) => {
