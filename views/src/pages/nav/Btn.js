@@ -23,6 +23,9 @@ const Btn = ({ user }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const theme = {
+    spacing: 1,
+  }
 
   return (
     <div>
@@ -40,14 +43,16 @@ const Btn = ({ user }) => {
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
+            onClick={handleClick} 
+            
           >
-            <Avatar alt="Remy Sharp" src="">
+            <Avatar alt="" src="" >
               {" "}
               <AccountCircleIcon fontSize="large" />{" "}
             </Avatar>
           </IconButton>
           <Menu
+            sx={{mr:5}}
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -55,6 +60,7 @@ const Btn = ({ user }) => {
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
+            
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
