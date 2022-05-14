@@ -1,6 +1,6 @@
-// order mongoose shema:
+// offer mongoose shema:
 const mongoose = require("mongoose");
-const orderSchema = mongoose.Schema(
+const offerSchema = mongoose.Schema(
   {
     service: {
       type: mongoose.Schema.Types.ObjectId,
@@ -12,13 +12,21 @@ const orderSchema = mongoose.Schema(
       ref: "User",
       required: [true, "please enter a user"],
     },
-    is_sold: {
+    accepted: {
       type: Boolean,
       default: false,
     },
-    price_sold: {
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    price: {
       type: Number,
       required: [true, "please enter a price"],
+    },
+    time: {
+      type: Date,
+      required: [true, "please enter a time"],
     },
     sold_at: {
       type: Date,
@@ -33,10 +41,10 @@ const orderSchema = mongoose.Schema(
     },
   },
   {
-    collection: "orders",
+    collection: "offers",
   }
 );
 
-const model = mongoose.model("orderSchema", orderSchema);
+const model = mongoose.model("offerSchema", offerSchema);
 
 module.exports = model;

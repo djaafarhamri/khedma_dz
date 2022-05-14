@@ -57,14 +57,10 @@ module.exports.login_post = async (req, res) => {
   console.log("login data : ", req.body);
   try {
     const user = await User.login(email, password);
-    console.log("user : ", user);
     const token = createToken(user._id);
-    console.log("token : ", token);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });  
-    console.log("done 1");
-    res.status(200).json({ user: user._id });
+    res.status(200).json({ user: user._id, role: user.role });
   } catch (err) {
-    console.log('err : ', err);
     res.status(400).json(err);
   }
 };
@@ -74,9 +70,9 @@ module.exports.google_callback = (req, res) => {
   res.redirect("/success_auth");
 };
 
-module.exports.logout_get = (req, res) => {
-  //* TODO
-  return;
+module.exports.logout = (req, res) => {
+  //clear jwt cookie
+  return res.status(202).clearCookie("jwt").send("cookie cleared");
 };
 
 module.exports.failed_auth = (req, res) => {
@@ -100,3 +96,26 @@ module.exports.authenticateToken = (req, res, next) => {
     next();
   });
 }
+
+
+module.exports.get_user = async (req, res) => {
+  const { _id } = req.params;
+  try {
+    const user = await User.findById(_id);
+    res.status(200).json({ user });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+}
+module.exports.get_users = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users });
+  }
+  catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+}
+

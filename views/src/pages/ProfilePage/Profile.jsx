@@ -1,7 +1,15 @@
+
 import img from "../../assets/O.jpg"
+import { useParams } from "react-router";
+import { useDataSource } from "../../hooks/useDataSource";
 
 const Profile = () => {
-    return ( 
+  const { _id } = useParams();
+  const user = useDataSource(`http://localhost:4000/get_user/${_id}`).data.user;
+
+  return user ? (
+    <div className="flex">Not found</div>
+    ) : (
         <div className="profile bg-gray-200 font-inter max-h-screen text-dark-blue mt-20 ">
             <div className="grid sm:grid-cols-12 gap-8 mx-5 py-2">
 
@@ -14,6 +22,12 @@ const Profile = () => {
             </div>
         </div>
      );
-}
+};
  
 export default Profile;
+
+
+
+
+
+

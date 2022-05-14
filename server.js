@@ -8,6 +8,7 @@ dotenv.config();
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authRoute");
+const { checkUser } = require("./midllewares/authMiddleware");
 // require("./passport-setup");
 
 const PORT = process.env.PORT || 4000;
@@ -43,6 +44,7 @@ app.use(express.json());
 // app.use(passport.session());
 
 app.use(authRoute);
+app.get('*', checkUser)
 
 // Connect to the db
 mongoose

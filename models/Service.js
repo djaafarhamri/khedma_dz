@@ -20,7 +20,7 @@ const serviceSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, "please enter an image"],
+      // required: [true, "please enter an image"],
     },
     category: {
       type: String,
@@ -39,12 +39,6 @@ const serviceSchema = mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    orders: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Order",
-        },
-    ],
     times_solds: {
       type: Number,
       default: 0,

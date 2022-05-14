@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { login } from "../../stores/userStore/userThunk";
-import logo from "../../assets/labour.jpeg";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -8,7 +7,6 @@ const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
-  const [error, setError] = useState("");
   return (
     <div className="flex items-center justify-center h-fit mt-24">
       <div className="flex flex-col items-center justify-center lg:w-[40%] w-[100%] h-fit  border border-solid">
@@ -34,7 +32,7 @@ const Login = ({ onLogin }) => {
           className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-10 p-2 w-64 font-bold"
           onClick={() =>
             email && password
-              ? onLogin(email, password)
+              ? onLogin(email, password, nav)
               : alert("Please fill out all fields")
           }
         >
@@ -55,8 +53,8 @@ const Login = ({ onLogin }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (email, password) => {
-      dispatch(login(email, password));
+    onLogin: (email, password, nav) => {
+      dispatch(login(email, password, nav));
     },
   };
 };
