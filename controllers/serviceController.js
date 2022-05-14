@@ -9,7 +9,7 @@ const handleErrors = (error) => {
   }
 };
 
-module.exports.create_service = async (req, res) => {
+module.exports.add_service = async (req, res) => {
   const { name, description, price, duration, image, category, professional } =
     req.body;
   try {

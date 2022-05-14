@@ -10,9 +10,9 @@ export const login = (email, password, nav) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: "LOGIN_USER",
-        payload: { 
+        payload: {
           user: res.data.user,
-          role: res.data.role
+          role: res.data.role,
         },
       });
       nav("/");
@@ -74,6 +74,18 @@ export const checkUser = (setIsLoading) => async (dispatch) => {
     })
     .catch((err) => {
       setIsLoading(false);
+      console.log(err);
+    });
+};
+//add service
+
+export const addService = (data) => async (dispatch) => {
+  axios
+    .post("http://localhost:4000/add_service", data)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
       console.log(err);
     });
 };
