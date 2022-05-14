@@ -24,6 +24,15 @@ const messengerSchema = mongoose.Schema(
     },
     messages: [
       {
+        messageType: {
+          type: String,
+          enum: ["text", "offer"],
+        },
+        offer: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Offer",
+          default: null,
+        },
         sender: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",

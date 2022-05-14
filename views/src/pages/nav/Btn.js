@@ -9,17 +9,25 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import MailIcon from "@mui/icons-material/Mail";
-import * as React from "react";
+import { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router";
+import { logout } from "../../stores/userStore/userThunk";
 
-const Btn = ({ user }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Btn = ({ user, onLogout, onLoad }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const nav = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
+  const handleProfile = () => {
+    nav("/profile/" + user._id);
     setAnchorEl(null);
   };
 
@@ -55,9 +63,15 @@ const Btn = ({ user }) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleProfile}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                onLogout(nav, setAnchorEl);
+              }}
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </Stack>
       ) : (
@@ -82,4 +96,12 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Btn);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogout: (nav, setAnchorEl) => {
+      dispatch(logout(nav, setAnchorEl));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Btn);
