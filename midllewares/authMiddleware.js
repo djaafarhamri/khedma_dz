@@ -33,7 +33,7 @@ const checkUser = (req, res, next) => {
         next();
     } else {
         let user = await User.findById(decodedToken.id);
-        res.send(user._id)
+        res.send({user: user._id, role: user.role});
         next();
       }
     });

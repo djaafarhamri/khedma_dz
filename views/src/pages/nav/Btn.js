@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { logout } from "../../stores/userStore/userThunk";
 
-const Btn = ({ user, onLogout, onLoad }) => {
+const Btn = ({ user, onLogout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const nav = useNavigate();
   const open = Boolean(anchorEl);
@@ -25,7 +25,7 @@ const Btn = ({ user, onLogout, onLoad }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   const handleProfile = () => {
     nav("/profile/" + user._id);
     setAnchorEl(null);
@@ -33,7 +33,7 @@ const Btn = ({ user, onLogout, onLoad }) => {
 
   return (
     <div>
-      {user ? (
+      {user?.user ? (
         <Stack direction="row" spacing={2}>
           <Badge badgeContent={5} color="error" className="mt-2">
             <MailIcon
@@ -87,6 +87,9 @@ const Btn = ({ user, onLogout, onLoad }) => {
             <button className="btn">Sign up</button>
           </Link>
         </Stack>
+      )}
+      {user.role === "professional" && (
+        <button className="btn">Add Service</button>
       )}
     </div>
   );

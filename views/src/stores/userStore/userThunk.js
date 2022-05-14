@@ -10,7 +10,10 @@ export const login = (email, password, nav) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: res.data.user },
+        payload: { 
+          user: res.data.user,
+          role: res.data.role
+        },
       });
       nav("/");
     })
@@ -20,15 +23,12 @@ export const login = (email, password, nav) => async (dispatch) => {
 };
 
 export const logout = (nav, setAnchorEl) => async (dispatch) => {
-  console.log("start logout");
   await axios
     .get("http://localhost:4000/logout", { withCredentials: true })
     .then((res) => {
-      console.log("start dispatch");
       dispatch({
         type: "LOGOUT_USER",
       });
-      console.log("done dispatch");
       setAnchorEl(null);
       nav("/");
     })
@@ -68,7 +68,7 @@ export const checkUser = (setIsLoading) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: res.data },
+        payload: { user: res.data.user, role: res.data.role },
       });
       setIsLoading(false);
     })
