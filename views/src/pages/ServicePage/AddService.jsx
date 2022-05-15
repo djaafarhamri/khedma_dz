@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { addService } from "../../stores/userStore/userThunk";
 
-const AddService = ({ user, setShowAddService }) => {
+const AddService = ({ user, onAddService, setShowAddService }) => {
   const [data, setData] = useState({});
 
   return (
@@ -14,7 +14,7 @@ const AddService = ({ user, setShowAddService }) => {
         className="fixed w-screen h-screen top-[0px] left-[0px] bg-[#000]/[.5]"
       ></div>
 
-      <div className="fixed w-[500px] h-[80%] top-[50%] translate-y-[-50%] bg-[#fff] overflow-y-scroll">
+      <div className="fixed w-[500px] h-[80%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#fff] overflow-y-scroll">
         <div className="sticky top-[0px] bg-[#fff] pl-10 py-4 shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)]">
           <h1 className="font-bold text-xl">Add Service</h1>
         </div>
@@ -59,7 +59,7 @@ const AddService = ({ user, setShowAddService }) => {
             <p>Price*</p>
             <input
               className="w-[80%] p-2 border border-solid"
-              type="text"
+              type="number"
               placeholder="ex. 6000 DA"
               onChange={(e) => {
                 setData({ ...data, price: e.target.value });
@@ -82,11 +82,11 @@ const AddService = ({ user, setShowAddService }) => {
           <button
             className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-2 p-2 w-48 font-bold"
             onClick={() => {
-              setData({ ...data, user: user.user });
+              onAddService({ ...data, user: user.user });
               setShowAddService(false);
             }}
           >
-            Add Experience
+            Add Service
           </button>
         </div>
       </div>
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddService: (data) => {
-      dispatch(addService);
+      dispatch(addService(data));
     },
   };
 };

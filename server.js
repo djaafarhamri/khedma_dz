@@ -8,6 +8,9 @@ dotenv.config();
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authRoute");
+const serviceRoute = require("./routes/serviceRoute");
+const offerRoute = require("./routes/offerRoute");
+const messengersRoute = require("./routes/messengersRoute");
 const { checkUser } = require("./midllewares/authMiddleware");
 // require("./passport-setup");
 
@@ -44,6 +47,9 @@ app.use(express.json());
 // app.use(passport.session());
 
 app.use(authRoute);
+app.use(serviceRoute);
+app.use(offerRoute);
+app.use(messengersRoute);
 app.get('*', checkUser)
 
 // Connect to the db

@@ -79,6 +79,7 @@ export const checkUser = (setIsLoading) => async (dispatch) => {
 //add service
 
 export const addService = (data) => async (dispatch) => {
+  console.log("add service");
   axios
     .post("http://localhost:4000/add_service", data)
     .then((res) => {

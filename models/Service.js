@@ -15,7 +15,7 @@ const serviceSchema = mongoose.Schema(
       required: [true, "please enter a price"],
     },
     duration: {
-      type: Number,
+      type: String,
       required: [true, "please enter a duration"],
     },
     image: {

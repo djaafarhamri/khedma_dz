@@ -14,6 +14,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { logout } from "../../stores/userStore/userThunk";
+import AddService from "../ServicePage/AddService";
 
 const Btn = ({ user, onLogout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,6 +34,7 @@ const Btn = ({ user, onLogout }) => {
     nav("/profile/" + user._id);
     setAnchorEl(null);
   };
+  const [showAddService, setShowAddService] = useState(false);
 
   return (
     <div>
@@ -93,8 +95,16 @@ const Btn = ({ user, onLogout }) => {
         </Stack>
       )}
       {user?.role === "professional" && (
-        <button className="btn">Add Service</button>
+        <button
+          className="btn"
+          onClick={() => {
+            setShowAddService(true);
+          }}
+        >
+          Add Service
+        </button>
       )}
+      {showAddService && <AddService setShowAddService={setShowAddService} />}
     </div>
   );
 };
