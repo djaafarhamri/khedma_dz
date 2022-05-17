@@ -9,8 +9,10 @@ export const useDataSource = (dataSource, render) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("getting data")
         const response = await axios.get(dataSource);
         setData(response.data);
+        console.log("getting data: ", response.data);
         setLoading(false);
       } catch (error) {
         setError(true);

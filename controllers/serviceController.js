@@ -79,9 +79,11 @@ module.exports.get_services = async (req, res) => {
 
 module.exports.get_service = async (req, res) => {
   const { _id } = req.params;
+  console.log(_id);
   try {
     const service = await Service.findById(_id);
-    res.status(200).json({ service });
+    console.log(service);
+    res.status(200).json(service);
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

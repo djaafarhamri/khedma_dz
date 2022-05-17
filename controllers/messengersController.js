@@ -2,31 +2,32 @@ const Messenger = require("../models/Messenger");
 const User = require("../models/User");
 
 module.exports.newMessage = async (req, res) => {
+  const { user, messenger } = req.body;
   try {
-    var messengers = await Messenger.find({
-      $or: [ { user, messenger }, { user: messenger, messenger: user } ]
+    console.log("messenger: ", messenger);
+    console.log("user: ", user);
+    const isExist = await User.find({
+      _id: user,
+      messengers: { $elemMatch: { messenger } },
     });
-    if (messenger) {
-      messengers = await Messenger.create({
+    console.log('isexist', isExist);
+    if (isExist.length > 0) {
+      res.status(400).json({ message: "Already exist" });
+    } else {
+      const messengers = await Messenger.create({
         user,
         messenger,
       });
-      User.updateOne(
+      await User.updateOne(
         { _id: user },
-        { $push: { messengers: messengers._id } },
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            }
-            }
-        );
-        
+        { $push: { messengers: { _id: messengers._id, messenger } } }
+      );
+      await User.updateOne(
+        { _id: messenger },
+        { $push: { messengers: { _id: messengers._id, messenger: user } } }
+      );
+      res.status(200).json({ messenger: messenger._id });
     }
-    await Messenger.updateOne(
-      { _id: messengers._id },
-      { $push: { messages: { sender: user, message } } }
-    );
-    res.status(200).json({ messenger: messenger._id });
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);

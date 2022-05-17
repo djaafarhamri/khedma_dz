@@ -132,12 +132,17 @@ const userSchema = mongoose.Schema(
         ref: "Order",
       },
     ],
-    messengers: [
-      {
+    messengers: [{
+      _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Messenger",
       },
-    ],
+      messenger: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+
+    }],
   },
   { collection: "users" }
 );
