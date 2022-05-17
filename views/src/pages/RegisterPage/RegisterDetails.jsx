@@ -7,7 +7,6 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
   const [adress, setAdress] = useState();
   const [phone, setPhone] = useState();
   const inputRef = useRef(null);
-  const photoData = new FormData();
 
   return (
     <>
@@ -17,9 +16,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
         </h2>
         <div className="flex justify-center mt-4">
           <input type="file" className="hidden" ref={inputRef} onChange={(e) => {
-              console.log("sssssssss: ", e.target.files[0]);
                 setPhoto(e.target.files[0]);
-              photoData.append("profile", e.target.files[0])
               }} />
           <img className="w-32 h-32 mr-4 cursor-pointer" src={addPhoto} alt="" onClick={() => {
             inputRef.current.click();

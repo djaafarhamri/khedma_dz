@@ -4,14 +4,12 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports.signup = async (req, res) => {
-  console.log("signup data : ", req.body);
-  console.log("email : ", req.body.email);
   const {
     email,
     firstName,
     lastName,
     phone,
-    profile_image,
+    photo,
     password,
     role,
     bio,
@@ -37,6 +35,7 @@ module.exports.signup = async (req, res) => {
       job,
       job_description,
       location,
+      profile_image: photo,
     });
     res.status(200).json({ user: user._id });
   } catch (err) {
@@ -54,11 +53,10 @@ const createToken = (id) => {
 
 module.exports.login_post = async (req, res) => {
   const { email, password } = req.body;
-  console.log("login data : ", req.body);
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });  
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({ user: user._id, role: user.role });
   } catch (err) {
     res.status(400).json(err);
@@ -95,27 +93,28 @@ module.exports.authenticateToken = (req, res, next) => {
     req.user = user;
     next();
   });
-}
-
+};
 
 module.exports.get_user = async (req, res) => {
   const { _id } = req.params;
   try {
     const user = await User.findById(_id);
-    res.status(200).json({ user });
+    res.status(200).json(user);
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
-}
+};  
 module.exports.get_users = async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json({ users });
-  }
-  catch (err) {
+  } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
-}
+};
 
+module.exports.upload_avatar = async (req, res) => {
+  res.status(200).json({ avatar: req.file.path });
+};

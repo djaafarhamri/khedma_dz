@@ -167,7 +167,6 @@ const EditModal = ({
                 }
                 return data;
               });
-              console.log(newExperiences);
               setDatas(newExperiences);
               setShowEditModal(false);
             }}

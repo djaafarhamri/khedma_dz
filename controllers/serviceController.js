@@ -10,11 +10,10 @@ const handleErrors = (error) => {
 };
 
 module.exports.add_service = async (req, res) => {
-  console.log("add service: req.body: ", req.body);
+  const image = req.file.path
   const { name, description, price, duration, category, user } =
   req.body;
   try {
-    console.log("trying add service");
     const service = await Service.create({
       name,
       description,
@@ -22,6 +21,7 @@ module.exports.add_service = async (req, res) => {
       duration,
       category,
       created_by: user,
+      image
     });
     res.status(200).json({ service: service._id });
   } catch (err) {
@@ -104,7 +104,6 @@ module.exports.get_service = async (req, res) => {
 
         res.status(200).json(services);
       } else {
-        console.log("not search");
           let services = await Service.find();
           res.status(200).json(services);
       }

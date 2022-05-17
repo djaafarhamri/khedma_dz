@@ -2,13 +2,10 @@ const Messenger = require("../models/Messenger");
 const User = require("../models/User");
 
 module.exports.newMessage = async (req, res) => {
-  const { user, messenger, message } = req.body;
-  console.log("newMessage data : ", req.body);
   try {
     var messengers = await Messenger.find({
       $or: [ { user, messenger }, { user: messenger, messenger: user } ]
     });
-    console.log("messenger : ", messenger);
     if (messenger) {
       messengers = await Messenger.create({
         user,
@@ -21,7 +18,6 @@ module.exports.newMessage = async (req, res) => {
             if (err) {
                 console.log(err);
             }
-            console.log("result : ", result);
             }
         );
         

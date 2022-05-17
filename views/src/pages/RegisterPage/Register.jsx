@@ -20,7 +20,6 @@ const Register = ({signUp}) => {
   };
 
   const onSubmit = (stepData) => {
-    console.log('submited');
     signUp({...registerData, ...stepData}, (cb) => {
       cb ? nav('/') : alert('error');
     }
@@ -36,7 +35,6 @@ const Register = ({signUp}) => {
       <RegisterOnboarding
         onFinish={() => {
           console.log("registerData : ", registerData);
-          console.log("photo : ", registerData.photo);
         }}
         currIndex={currIndex}
         onNext={onNext}

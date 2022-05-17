@@ -4,6 +4,7 @@ import { addService } from "../../stores/userStore/userThunk";
 
 const AddService = ({ user, onAddService, setShowAddService }) => {
   const [data, setData] = useState({});
+  const [cover, setCover] = useState(null); 
 
   return (
     <>
@@ -19,6 +20,17 @@ const AddService = ({ user, onAddService, setShowAddService }) => {
           <h1 className="font-bold text-xl">Add Service</h1>
         </div>
         <div className="flex flex-col ml-10">
+          <div className="mb-5">
+            <p>Cover*</p>
+            <input
+              className="w-[80%] p-2 border border-solid"
+              type="file"
+              onChange={(e) => {
+                setCover(e.target.files[0]);
+              }}
+            />
+          </div>
+
           <div className="mb-5">
             <p>Title*</p>
             <input
@@ -82,7 +94,7 @@ const AddService = ({ user, onAddService, setShowAddService }) => {
           <button
             className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-2 p-2 w-48 font-bold"
             onClick={() => {
-              onAddService({ ...data, user: user.user });
+              onAddService({ ...data, user: user.user }, cover);
               setShowAddService(false);
             }}
           >
@@ -102,8 +114,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddService: (data) => {
-      dispatch(addService(data));
+    onAddService: (data, cover) => {
+      dispatch(addService(data, cover));
     },
   };
 };

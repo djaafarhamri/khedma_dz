@@ -37,17 +37,32 @@ export const logout = (nav) => async (dispatch) => {
 };
 
 export const register = (data, cb) => async (dispatch) => {
-  console.log("dispatching register: ", data);
+  const avatar = new FormData();
+  var uploaded = false;
+  avatar.append("avatar", data.photo);
   await axios
-    .post("http://localhost:4000/signup", data) //withCredentials: true
+    .post("http://localhost:4000/upload_avatar", avatar, {
+      withCredentials: true,
+      credentials: "include",
+    })
     .then((res) => {
-      cb(true);
-      console.log("done");
+      data.photo = res.data.avatar;
+      uploaded = true;  
     })
     .catch((err) => {
-      cb(false);
       console.log(err);
     });
+  if (uploaded) {
+    await axios
+      .post("http://localhost:4000/signup", data) //withCredentials: true
+      .then((res) => {
+        cb(true);
+      })
+      .catch((err) => {
+        cb(false);
+        console.log(err);
+      });
+  }
 };
 // get user
 export const getUser = (id) => async (dispatch) => {
@@ -78,10 +93,18 @@ export const checkUser = (setIsLoading) => async (dispatch) => {
 };
 //add service
 
-export const addService = (data) => async (dispatch) => {
-  console.log("add service");
+export const addService = (data, cover) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("serviceImage", cover);
+  formData.append("name", data.name);
+  formData.append("description", data.description);
+  formData.append("price", data.price);
+  formData.append("duration", data.duration);
+  formData.append("category", data.category);
+  formData.append("user", data.user);
+
   axios
-    .post("http://localhost:4000/add_service", data)
+    .post("http://localhost:4000/add_service", formData)
     .then((res) => {
       console.log(res.data);
     })

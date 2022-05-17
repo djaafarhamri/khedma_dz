@@ -9,15 +9,29 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import MailIcon from "@mui/icons-material/Mail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { logout } from "../../stores/userStore/userThunk";
 import AddService from "../ServicePage/AddService";
+import axios from "axios";
 
 const Btn = ({ user, onLogout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [avatar, setAvatar] = useState("");
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:4000/get_user/${user.user}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setAvatar(res.data.profile_image);
+        });
+    }
+  }, [user]);
+
   const nav = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -54,10 +68,18 @@ const Btn = ({ user, onLogout }) => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <Avatar alt="" src="">
-              {" "}
-              <AccountCircleIcon fontSize="large" />{" "}
-            </Avatar>
+            {avatar ? (
+              <img
+                className="w-12 h-12 rounded-full"
+                src={`http://localhost:4000/${avatar}`}
+                alt=""
+              />
+            ) : (
+              <Avatar alt="" src="">
+                {" "}
+                <AccountCircleIcon fontSize="large" />{" "}
+              </Avatar>
+            )}
           </IconButton>
           <Menu
             sx={{ mr: 5 }}
