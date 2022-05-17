@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import TableBody from "./TableBody";
-import TableHead from "./TableHead";
+import TTableBody from "./TTableBody";
 import axios from "axios";
-import AdminNav from "./AdminNav";
+import TTableHead from "./TTableHead";
 
-const Admin = () => {
-  const [users, setUsers] = useState([]);
+const Transactions = () => {
+  const [transactions, setTransactions] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/get_users")
+      .get("http://localhost:4000/get_transactions")
       .then((res) => {
-        console.log("users: ", res.data);
-        setUsers(res.data);
+        console.log("transactions: ", res.data);
+        setTransactions(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -20,7 +19,6 @@ const Admin = () => {
 
   return (
     <div className="bg-white flex rounded-md w-full">
-      <AdminNav />
       <div className="w-[calc(90%-250px)] mx-auto">
         <div className=" flex items-center justify-between pb-6">
           <div>
@@ -61,9 +59,9 @@ const Admin = () => {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
-                <TableHead />
-                {users &&
-                  users.map((user, id) => <TableBody id={id} user={user} />)}
+                <TTableHead />
+                {transactions &&
+                  transactions.map((transaction, id) => <TTableBody id={id} transaction={transaction} />)}
               </table>
               <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span className="text-xs xs:text-sm text-gray-900">
@@ -87,4 +85,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Transactions;

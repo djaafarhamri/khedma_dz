@@ -9,16 +9,18 @@ import Register from './pages/RegisterPage/Register';
 import Landing from './pages/landing-page/Landing';
 import Footer from "./pages/Footer";
 import Chat from './pages/ChatPage/Chat';
-import Admin from './pages/AdminPage/Admin';
+import Professionals from './pages/AdminPage/Professionals';
 import Service from "./pages/ServicePage/Service";
 import { useEffect, useState } from "react";
+import AdminNav from "./pages/AdminPage/AdminNav";
+import Clients from "./pages/AdminPage/Clients";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   useEffect(() => {
     setIsAdmin(
-      location.pathname.toLocaleLowerCase() === "/admin" 
+      location.pathname.toLocaleLowerCase().substring(0, 6) === "/admin" 
     );
   }, [location]);
   return (
@@ -32,7 +34,24 @@ function App() {
         <Route exact path="/profile/:_id" element={<Profile />} />
         <Route exact path="/service/:_id" element={<Service />} />
         <Route exact path="/chat" element={<Chat />} />
-        <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/admin/professionals" element={
+        <div className="flex">
+          <AdminNav />
+          <Professionals />
+        </div>
+        } />
+        <Route exact path="/admin/clients" element={
+          <div className="flex">
+          <AdminNav />
+          <Clients />
+        </div>
+        } />
+        <Route exact path="/admin/transactions" element={
+        <div className="flex">
+          <AdminNav />
+          <Professionals />
+        </div>
+        } />
       </Routes>
       {!isAdmin && <Footer/>}
     </div>

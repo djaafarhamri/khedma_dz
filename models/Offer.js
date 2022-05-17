@@ -20,6 +20,10 @@ const offerSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    onGoing: {
+      type: Boolean,
+      default: false,
+    },
     price: {
       type: Number,
       required: [true, "please enter a price"],

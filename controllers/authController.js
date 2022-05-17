@@ -115,6 +115,26 @@ module.exports.get_users = async (req, res) => {
   }
 };
 
+module.exports.get_professionals = async (req, res) => {
+  try {
+    const users = await User.find({role: "professional"});
+    res.status(200).json(users);
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+
+module.exports.get_clients = async (req, res) => {
+  try {
+    const users = await User.find({role: "client"});
+    res.status(200).json(users);
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+
 module.exports.upload_avatar = async (req, res) => {
   res.status(200).json({ avatar: req.file.path });
 };
