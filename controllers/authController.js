@@ -108,7 +108,7 @@ module.exports.get_user = async (req, res) => {
 module.exports.get_users = async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).json({ users });
+    res.status(200).json(users);
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

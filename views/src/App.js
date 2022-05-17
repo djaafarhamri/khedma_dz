@@ -1,5 +1,6 @@
 import "./App.css"
 import { Routes, Route } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Home from './pages/HomePage/Home';
 import Login from './pages/LoginPage/Login';
 import Nav from './pages/nav/Nav';
@@ -10,11 +11,19 @@ import Footer from "./pages/Footer";
 import Chat from './pages/ChatPage/Chat';
 import Admin from './pages/AdminPage/Admin';
 import Service from "./pages/ServicePage/Service";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    setIsAdmin(
+      location.pathname.toLocaleLowerCase() === "/admin" 
+    );
+  }, [location]);
   return (
     <div className="App " >
-      <Nav />
+      {!isAdmin && <Nav />}
       <Routes>
         <Route exact path="/Home" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
@@ -25,7 +34,7 @@ function App() {
         <Route exact path="/chat" element={<Chat />} />
         <Route exact path="/admin" element={<Admin />} />
       </Routes>
-      <Footer/>
+      {!isAdmin && <Footer/>}
     </div>
   );
 }
