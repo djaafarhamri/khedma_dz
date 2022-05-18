@@ -4,13 +4,10 @@ const User = require("../models/User");
 module.exports.newMessage = async (req, res) => {
   const { user, messenger } = req.body;
   try {
-    console.log("messenger: ", messenger);
-    console.log("user: ", user);
     const isExist = await User.find({
       _id: user,
       messengers: { $elemMatch: { messenger } },
     });
-    console.log('isexist', isExist);
     if (isExist.length > 0) {
       res.status(400).json({ message: "Already exist" });
     } else {

@@ -19,7 +19,7 @@ const Transactions = () => {
 
   return (
     <div className="bg-white flex rounded-md w-full">
-      <div className="w-[calc(90%-250px)] mx-auto">
+      <div className="w-full mx-auto">
         <div className=" flex items-center justify-between pb-6">
           <div>
             <h2 className="text-gray-600 font-semibold">Products Oder</h2>

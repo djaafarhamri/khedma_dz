@@ -33,8 +33,11 @@ const TableBody = ({ user }) => {
               aria-hidden
               className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
             ></span>
-            <span className="relative">{user.verified}</span>
+            <span className="relative">{user.verifiedd}</span>
           </span>
+        </td>
+        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+          <button className="text-gray-900 whitespace-no-wrap">opti</button>
         </td>
       </tr>
     </tbody>

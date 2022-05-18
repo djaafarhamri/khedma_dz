@@ -79,7 +79,6 @@ module.exports.get_services = async (req, res) => {
 
 module.exports.get_service = async (req, res) => {
   const { _id } = req.params;
-  console.log(_id);
   try {
     const service = await Service.findById(_id);
     console.log(service);

@@ -104,7 +104,7 @@ module.exports.get_user = async (req, res) => {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
-};  
+};
 module.exports.get_users = async (req, res) => {
   try {
     const users = await User.find();
@@ -117,7 +117,25 @@ module.exports.get_users = async (req, res) => {
 
 module.exports.get_professionals = async (req, res) => {
   try {
-    const users = await User.find({role: "professional"});
+    const users = await User.find({ role: "professional" });
+    res.status(200).json(users);
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+module.exports.get_professionals_by_seach = async (req, res) => {
+  const regex = new RegExp(escapeRegex(req.params.search), "gi");
+  try {
+    // get professionals by regex firstname or last name
+    const users = await User.find({
+      $or: [{ first_name: regex }, { last_name: regex }],
+      role: "professional",
+    });
     res.status(200).json(users);
   } catch (err) {
     const errors = handleErrors(err);
@@ -127,7 +145,22 @@ module.exports.get_professionals = async (req, res) => {
 
 module.exports.get_clients = async (req, res) => {
   try {
-    const users = await User.find({role: "client"});
+    const users = await User.find({ role: "client" });
+    res.status(200).json(users);
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+
+module.exports.get_clients_by_seach = async (req, res) => {
+  const regex = new RegExp(escapeRegex(req.params.search), "gi");
+  try {
+    // get clients by regex firstname or last name
+    const users = await User.find({
+      $or: [{ first_name: regex }, { last_name: regex }],
+      role: "client",
+    });
     res.status(200).json(users);
   } catch (err) {
     const errors = handleErrors(err);

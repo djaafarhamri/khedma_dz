@@ -5,7 +5,8 @@ import axios from "axios";
 
 const Clients = () => {
   const [users, setUsers] = useState([]);
-  useEffect(() => {
+ 
+  const get_clients = async () => {
     axios
       .get("http://localhost:4000/get_clients")
       .then((res) => {
@@ -15,11 +16,26 @@ const Clients = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    get_clients();
   }, []);
 
+  const get_clients_by_seach = (value) => {
+    axios
+      .get("http://localhost:4000/get_clients_by_seach/" + value)
+      .then((res) => {
+        console.log("users: ", res.data);
+        setUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="bg-white flex rounded-md w-full">
-      <div className="w-[calc(90%-250px)] mx-auto">
+      <div className="w-full mx-auto">
         <div className=" flex items-center justify-between pb-6">
           <div>
             <h2 className="text-gray-600 font-semibold">Products Oder</h2>
@@ -43,6 +59,16 @@ const Clients = () => {
                 className="bg-gray-50 outline-none ml-1 block "
                 type="text"
                 placeholder="search..."
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    console.log(e.target.value);
+                    if (e.target.value !== "") {
+                      get_clients_by_seach(e.target.value);
+                    } else {
+                      get_clients();
+                    }
+                  }
+                }}
               />
             </div>
             <div className="lg:ml-40 ml-10 space-x-8">

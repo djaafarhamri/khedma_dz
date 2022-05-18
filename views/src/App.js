@@ -52,6 +52,8 @@ function App() {
           <Professionals />
         </div>
         } />
+        {/* 404 */}
+        <Route path="*" element={<div>404</div>} />
       </Routes>
       {!isAdmin && <Footer/>}
     </div>

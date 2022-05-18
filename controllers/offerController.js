@@ -53,16 +53,13 @@ module.exports.complete_offer = async (req, res) => {
   }
 };
 
-
 module.exports.get_transactions = async (req, res) => {
   try {
-    const offer = await Offer.find(
-      { accepted: true },
-    );
-    const service = await Service.find({_id: offer.service});
-    const professional = await User.find({_id: service.created_by});
-    const client = await User.find({_id: offer.client});
-    res.status(200).json({ 
+    const offer = await Offer.find({ accepted: true });
+    const service = await Service.find({ _id: offer.service });
+    const professional = await User.find({ _id: service.created_by });
+    const client = await User.find({ _id: offer.client });
+    res.status(200).json({
       professional,
       client,
       created_at: offer.created_at,
@@ -76,3 +73,32 @@ module.exports.get_transactions = async (req, res) => {
   }
 };
 
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+module.exports.get_transactions_by_seach = async (req, res) => {
+  const regex = new RegExp(escapeRegex(req.params.search), "gi");
+  try {
+    const offer = await Offer.find({ accepted: true });
+    const service = await Service.find({ _id: offer.service });
+    const professional = await User.find({
+      _id: service.created_by,
+      $or: [{ first_name: regex }, { last_name: regex }],
+    });
+    const client = await User.find({ _id: offer.client });
+    if (professional) {
+      res.status(200).json({
+        professional,
+        client,
+        created_at: offer.created_at,
+        price: offer.price,
+        time: offer.time,
+        completed: offer.completed,
+      });
+    }
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
