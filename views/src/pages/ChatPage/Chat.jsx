@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import Messages from "./Messages";
 import Users from "./Users";
+import Message from "./Message";
 
 const Chat = ({ user }) => {
     const [messages, setMessages] = useState();
@@ -10,6 +11,7 @@ const Chat = ({ user }) => {
         <div>
             <Users setMessenger={setMessenger} />
             <Messages user={user} messages={messages} setMessages={setMessages} messenger={messenger}  />
+            <Message/>
         </div>
      );
 }

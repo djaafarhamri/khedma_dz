@@ -16,7 +16,7 @@ const Nav = () => {
   }, [location]);
   return (
     <>
-      <div className="shadow z-50 w-screen h-auto sticky top-0 left-0 right-0 bg-white">
+      <div className="shadow z-50 w-screen h-auto fixed top-0 left-0 right-0 bg-white">
         <div className="flex mx-16 mt-4  font-inter pb-2">
           <Sidebar />
           <div
