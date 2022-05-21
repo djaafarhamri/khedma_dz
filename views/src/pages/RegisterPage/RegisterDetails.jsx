@@ -6,7 +6,22 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
   const [photo, setPhoto] = useState();
   const [adress, setAdress] = useState();
   const [phone, setPhone] = useState();
+  const [lat, setLat] = useState();
+  const [lon, setLon] = useState();
   const inputRef = useRef(null);
+
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+    } else {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+      }, () => {
+        alert('Unable to retrieve your location');
+      });
+    }
+  }
 
   return (
     <>
@@ -45,13 +60,32 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
                 placeholder=""
               />
             </div>
+            
+            <div className=" mt-6">
+              <p>Localisation*</p>
+              <input
+                value={lat}
+                className="p-2 border border-solid"
+                type="text"
+                placeholder="longitude,latitude"
+                readOnly
+                />
+              <input
+                value={lon}
+                className="p-2 border border-solid"
+                type="text"
+                placeholder="longitude,latitude"
+                readOnly
+                />
+                <button onClick={getLocation}>Get Localisation</button>
+            </div>
           </div>
         </div>
       </div>
       <OnboardingTrack
         onBack={onBack}
         goToNext={goToNext}
-        data={{ photo, adress, phone }}
+        data={{ photo, adress, phone, location: { lat, lon } }}
         track="90%"
         buttonText="Publish Profile"
         onSubmit={onSubmit}

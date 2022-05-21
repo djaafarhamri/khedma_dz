@@ -21,7 +21,7 @@ const Service = ({ user }) => {
   const nav = useNavigate();
   const buy = () => {
     axios
-      .post("http://localhost:4000/newMessage", {
+      .post("http://localhost:4000/newMessenger", {
         user: user.user,
         messenger: service.created_by,
       })

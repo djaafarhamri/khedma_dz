@@ -31,7 +31,6 @@ const messengerSchema = mongoose.Schema(
         offer: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Offer",
-          default: null,
         },
         sender: {
           type: mongoose.Schema.Types.ObjectId,

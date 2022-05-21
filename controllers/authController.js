@@ -101,8 +101,8 @@ module.exports.get_user = async (req, res) => {
     const user = await User.findById(_id);
     res.status(200).json(user);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 module.exports.get_users = async (req, res) => {
@@ -110,8 +110,8 @@ module.exports.get_users = async (req, res) => {
     const users = await User.find();
     res.status(200).json(users);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 
@@ -120,8 +120,8 @@ module.exports.get_professionals = async (req, res) => {
     const users = await User.find({ role: "professional" });
     res.status(200).json(users);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 function escapeRegex(text) {
@@ -138,8 +138,8 @@ module.exports.get_professionals_by_seach = async (req, res) => {
     });
     res.status(200).json(users);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 
@@ -148,8 +148,8 @@ module.exports.get_clients = async (req, res) => {
     const users = await User.find({ role: "client" });
     res.status(200).json(users);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 
@@ -163,8 +163,8 @@ module.exports.get_clients_by_seach = async (req, res) => {
     });
     res.status(200).json(users);
   } catch (err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
+    // const errors = handleErrors(err);
+    res.status(400).json({ err });
   }
 };
 
