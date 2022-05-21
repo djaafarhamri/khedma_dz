@@ -112,7 +112,13 @@ const userSchema = mongoose.Schema(
       type: String,
     },
     location: {
-      type: String,
+      lon: {
+        type: Number,
+      },
+      lat: {
+        type: Number,
+      },
+      
     },
     services: [
       {

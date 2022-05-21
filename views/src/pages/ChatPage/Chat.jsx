@@ -8,7 +8,7 @@ const Chat = ({ user }) => {
     const [messages, setMessages] = useState();
     const [messenger, setMessenger] = useState();
     return ( 
-        <div>
+        <div className="">
             <Users setMessenger={setMessenger} />
             <Messages user={user} messages={messages} setMessages={setMessages} messenger={messenger}  />
             <Message/>
