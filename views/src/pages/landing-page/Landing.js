@@ -111,7 +111,7 @@ const Landing = () => {
           />
           <div className="flex flex-col justify-center mt-2">
             <p className="text-lg font-bold">Mekkaoui Ahmed</p>
-            <p className="mb-4 text-xs text-dark-blue">Product Manager</p>
+            <p className="mb-4 text-xs text-dark-blue">Founder, Admin</p>
             <p className="text-sm tracking-wide text-gray-800">
               a junior programmer starve for learning and experiencing new things, speciality of web dev average skills but keep improving.
             </p>
@@ -125,7 +125,7 @@ const Landing = () => {
           />
           <div className="flex flex-col justify-center mt-2">
             <p className="text-lg font-bold">Djaafar Hamri</p>
-            <p className="mb-4 text-xs text-gray-800">Design Team Lead</p>
+            <p className="mb-4 text-xs text-gray-800">Founder, Admin</p>
             <p className="text-sm tracking-wide text-gray-800">
               Secondary fermentation degrees plato units of bitterness, cask
               conditioned ale ibu real ale pint glass craft beer. krausen goblet

@@ -6,7 +6,8 @@ const RegisterRole = ({ goToNext }) => {
   const [role, setRole] = useState(null);
 
   return (
-    <div  className="flex flex-col items-center justify-center lg:w-[60%] w-[100%] h-fit m-10 border border-solid rounded-xl">
+    <div className="flex items-center justify-center h-screen w-screen">
+    <div  className="flex flex-col items-center justify-center lg:w-[60%] w-[100%] h-fit m-10 border border-solid rounded-xl ">
       <h1 className="lg:text-3xl text-xl mt-10 ">Join as a client or professional</h1>
       <div className="flex flex-wrap m-10 justify-center">
         <div
@@ -33,7 +34,7 @@ const RegisterRole = ({ goToNext }) => {
       </div>
       {role ?
       <button
-        className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-10 p-2 w-64 font-bold" 
+        className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan m-10 p-2 w-64 font-bold" 
         onClick={() => role && goToNext({ role })}>Join as a {role}</button>
       :
       <button
@@ -42,6 +43,7 @@ const RegisterRole = ({ goToNext }) => {
         disabled
         >Choose your role</button>
       }
+      </div>
       </div>
   );
 };

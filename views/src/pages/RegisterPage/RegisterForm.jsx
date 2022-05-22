@@ -7,11 +7,12 @@ const RegisterForm = ({ goToNext }) => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="flex flex-col items-center justify-center lg:w-[40%] w-[100%] h-fit m-10 border border-solid">
+    <div className="flex items-center justify-center h-screen w-screen">
+    <div className="flex flex-col items-center justify-center  lg:w-[40%] w-[100%] h-fit m-10 border border-solid rounded-lg ">
       <h1 className="lg:text-3xl text-xl m-10">Sign Up</h1>
       {/* register form */}
 
-      <div className="flex w-[80%] justify-between m-3">
+      {/*<div className="flex w-[80%] justify-between m-3">
         <input
           onChange={(e) => {
             setFirstName(e.target.value);
@@ -28,7 +29,26 @@ const RegisterForm = ({ goToNext }) => {
           type="text"
           placeholder="Last Name"
         />
-      </div>
+        </div>*/}
+        <div className="flex space-x-2">
+          <div class="relative mb-2">
+                       <input id="First name" name="Firstrst name" 
+                        onChange={(e) => {
+                          setFirstName(e.target.value);
+                        }}
+                       type="text" class="peer h-10  border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="First name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">First Name</label>
+          </div>
+          <div class="relative mb-2">
+                       <input id="Last name" name="Last name" 
+                        onChange={(e) => {
+                          setLastName(e.target.value);
+                        }}
+                       type="text" class="peer h-10  border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="Last name" class="absolute left-0 -top-3.5 text-dark-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Last Name</label>
+                  </div>
+        </div>
+        
       <input
         onChange={(e) => {
           setEmail(e.target.value);
@@ -46,7 +66,7 @@ const RegisterForm = ({ goToNext }) => {
         placeholder="Password"
       />
       <button
-        className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-10 p-2 w-64 font-bold"
+        className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan m-10 p-2 w-64 font-bold"
         onClick={() =>
           firstName && lastName && email && password
             ? goToNext({firstName, lastName, email, password})
@@ -55,6 +75,7 @@ const RegisterForm = ({ goToNext }) => {
       >
         Create My Account
       </button>
+    </div>
     </div>
   );
 };
