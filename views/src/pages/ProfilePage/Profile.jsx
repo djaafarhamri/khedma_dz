@@ -2,6 +2,7 @@
 import img from "../../assets/O.jpg"
 import { useParams } from "react-router";
 import { useDataSource } from "../../hooks/useDataSource";
+import Carousel from "./Carousel";
 
 const Profile = () => {
   const { _id } = useParams();
@@ -11,18 +12,18 @@ const Profile = () => {
     <div className="flex">Not found</div>
     ) : (
         <div className="profile bg-gray-200 font-inter max-h-screen text-dark-blue mt-20 ">
-            <div className="grid sm:grid-cols-12 gap-8 mx-5 py-2">
+            <div className="grid sm:grid-cols-12 gap-8 mx-5 py-5">
                 {/*user info */}
                 <div className=" col-span-12 md:col-span-3 bg-white p-3 rounded-md">
                     <div className="flex flex-col space-y-3 ">
                       <img src={img} className="rounded-full h-full w-full object-cover" alt="" />
                       <h1 className="text-center text-2xl font-semibold">Ahmed yacine</h1>
-                      <h2 className="text-xl font-semibold text-left text-gray-500">Age:</h2>
-                      <h2 className="text-xl font-semibold text-left">20</h2>
-                      <h2 className="text-xl font-semibold text-left text-gray-500">Location:</h2>
-                      <h2 className="text-xl font-semibold text-left">saida algeria</h2>
-                      <h2 className="text-xl font-semibold text-left text-gray-500">profession:</h2>
-                      <h2 className="text-xl font-semibold text-left">programer</h2>
+                      <h2 className="text-xl font-semibold text-left ">Age:</h2>
+                      <h2 className="text-xl font-semibold text-left text-gray-500">20</h2>
+                      <h2 className="text-xl font-semibold text-left ">Location:</h2>
+                      <h2 className="text-xl font-semibold text-left text-gray-500">saida algeria</h2>
+                      <h2 className="text-xl font-semibold text-left ">profession:</h2>
+                      <h2 className="text-xl font-semibold text-left text-gray-500">programer</h2>
                     </div>
                 </div>
                 {/*user services and cv */}
@@ -36,7 +37,9 @@ const Profile = () => {
                           on behalf of their employer or provider institution as necessary to 
                           ensure the patient’s procedures are paid for by their insurance company
                         </div>
-
+                        <div>
+                            <Carousel/>
+                        </div>
                     </div>
 
                 </div>
