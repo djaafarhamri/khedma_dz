@@ -116,7 +116,7 @@ const Carousel = () => {
   return (
     <div className="carousel my-12 mx-auto">
       <h2 className="text-4xl leading-8 font-semibold mb-12 text-slate-700">
-        Our epic carousel
+        Services
       </h2>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
@@ -166,12 +166,12 @@ const Carousel = () => {
         <div
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
-        >
-          {data.map((resource, index) => {
+        > 
+          {/*{data.map((resource, index) => {
             return (
               <div
                 key={index}
-                className="carousel-item text-center relative w-80 h-56 snap-start"
+                className="carousel-item text-center relative w-80 h-64 snap-center"
               >
                 <p
                   className="h-56 w-80 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
@@ -190,9 +190,41 @@ const Carousel = () => {
                     {resource.title}
                   </h3>
                 </p>
-              </div>
+            </div>
             );
-          })}
+          })}*/}
+          <div
+                
+                className="carousel-item text-center relative w-80 h-2/5 snap-center"
+              >
+                <div
+                  className="h-56 w-80 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                  style={{ backgroundImage: `url(${ 'https://flowbite.com/docs/images/blog/image-1.jpg'})` }}
+                >
+                  <img
+                    src='https://flowbite.com/docs/images/blog/image-1.jpg'
+                    alt=''
+                    className="w-full aspect-square hidden"
+                  />
+                </div>
+                <div
+                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-40 bg-gray-100 z-0"
+                >
+                </div>
+                <div className='flex flex-col space-y-3 mt-1 bg-white'>
+                  <div>
+                 <p className='text-center font-inter text-dark-blue text-2xl '>
+                    website
+                 </p>
+
+                 <p className=''>
+                     create website that suit you, with language and outils you like just click here too see offers
+                 </p>
+                 </div>
+                </div>
+                
+            </div>
+
         </div>
       </div>
     </div>
