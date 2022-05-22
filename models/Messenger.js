@@ -2,14 +2,9 @@
 const mongoose = require("mongoose");
 const messengerSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    messenger: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    users: [{
+      type: String,
+    }],
     is_blocked: {
       type: Boolean,
       default: false,
@@ -29,12 +24,10 @@ const messengerSchema = mongoose.Schema(
           enum: ["text", "offer"],
         },
         offer: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Offer",
+          type: String
         },
         sender: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          type: String
         },
         message: {
           type: String,

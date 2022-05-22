@@ -1,30 +1,68 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import Message from "./Message";
 import User from "./User";
 
 const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
-
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
+  const [messenger, setMessenger] = useState();
   useEffect(() => {
-    console.log("user: ", user?.user)
-    console.log("user le: ", user?.lenght)
+    console.log("user: ", user?.user);
+    console.log("user le: ", user?.lenght);
     axios
-      .get(`http://localhost:4000/getMessengers/${user.user}`)
+      .get(`http://localhost:4000/getMessengers/${user?.user}`)
       .then((res) => {
         console.log("messengers: ", res.data.messengers);
         setUsers(res.data.messengers);
       });
   }, [user]);
 
+  useEffect(() => {
+    if (messenger) {
+      axios
+        .post(`http://localhost:4000/getMessages`, {
+          user: user?.user,
+          messenger,
+        })
+        .then((res) => {
+          console.log("messages: ", res.data);
+          setMessages(res.data.messages);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [messages, messenger, user]);
+
+  const sendMessage = () => {
+    axios
+      .post(`http://localhost:4000/sendMessage`, {
+        user: user?.user,
+        messenger,
+        message,
+        messageType: "text",
+      })
+      .then((res) => {
+        console.log(res.data);
+        setMessages(res.data.message);
+        setMessage("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div class="flex h-screen antialiased text-gray-800">
-      <div class="flex flex-row h-full w-full overflow-x-hidden">
-        <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
-          <div class="flex flex-row items-center justify-center h-12 w-full">
-            <div class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
+    <div className="flex h-screen antialiased text-gray-800">
+      <div className="flex flex-row h-full w-full overflow-x-hidden">
+        <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+          <div className="flex flex-row items-center justify-center h-12 w-full">
+            <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
               <svg
-                class="w-6 h-6"
+                className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -39,162 +77,70 @@ const Chat = ({ user }) => {
               </svg>
             </div>
           </div>
-          <div class="flex flex-col mt-8">
-            <div class="flex flex-row items-center justify-between text-xs">
-              <span class="font-bold">Active Conversations</span>
+          <div className="flex flex-col mt-8">
+            <div className="flex flex-row items-center justify-between text-xs">
+              <span className="font-bold">Active Conversations</span>
             </div>
-            <div class="flex flex-col space-y-1 mt-4 -mx-2 h-80 overflow-y-auto">
-              {users && users.map((u, i) => (
-                <User user={u} key={i} />
-              ))}
+            <div className="flex flex-col space-y-1 mt-4 -mx-2 h-80 overflow-y-auto">
+              {users &&
+                users.map((u, i) => (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      setMessenger(u);
+                    }}
+                  >
+                    <User user={u} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
-        <div class="flex flex-col flex-auto h-full p-6">
-          <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
-            <div class="flex flex-col h-full overflow-x-auto mb-4">
-              <div class="flex flex-col h-full">
-                <div class="grid grid-cols-12 gap-y-2">
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div>Hey How are you today?</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Vel ipsa commodi illum saepe numquam maxime
-                          asperiores voluptate sit, minima perspiciatis.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                    <div class="flex items-center justify-start flex-row-reverse">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                        <div>I'm ok what about you?</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                    <div class="flex items-center justify-start flex-row-reverse">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                        <div>
-                          Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div>Lorem ipsum dolor sit amet !</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                    <div class="flex items-center justify-start flex-row-reverse">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                        <div>
-                          Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                        </div>
-                        <div class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                          Seen
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Perspiciatis, in.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                        A
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div class="flex flex-row items-center">
-                          <button class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-800 rounded-full h-8 w-10">
-                            <svg
-                              class="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                              ></path>
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="flex flex-col flex-auto h-full p-6">
+          <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
+            <div className="flex flex-col h-full overflow-x-auto mb-4">
+              <div className="flex flex-col h-full">
+                <div className="grid grid-cols-12 gap-y-2">
+                  {messages &&
+                    messages.map((m, i) => (
+                      <Message
+                        message={m}
+                        key={i}
+                        user={user}
+                        messenger={messenger}
+                      />
+                    ))}
                 </div>
               </div>
             </div>
-            <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+            <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
               <div>
-                <button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+                <button className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
                   <span>request</span>
                 </button>
               </div>
-              <div class="flex-grow ml-4">
-                <div class="relative w-full">
+              <div className="flex-grow ml-4">
+                <div className="relative w-full">
                   <input
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                    }}
                     type="text"
-                    class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                    className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                   />
                 </div>
               </div>
-              <div class="ml-4">
-                <button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+              <div className="ml-4">
+                <button
+                  onClick={() => {
+                    sendMessage();
+                  }}
+                  className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                >
                   <span>Send</span>
-                  <span class="ml-2">
+                  <span className="ml-2">
                     <svg
-                      class="w-4 h-4 transform rotate-45 -mt-px"
+                      className="w-4 h-4 transform rotate-45 -mt-px"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const User = ({ key, user }) => {
+const User = ({ key, user, setMessengerChat }) => {
   const [messenger, setMessenger] = useState();
   useEffect(() => {
     console.log(user);
     axios
-      .get(`http://localhost:4000/get_user/${user.messenger}`)
+      .get(`http://localhost:4000/get_user/${user}`)
       .then((res) => {
         console.log(res.data);
         setMessenger(res.data);
