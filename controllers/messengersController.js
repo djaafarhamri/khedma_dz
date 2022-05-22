@@ -75,3 +75,18 @@ module.exports.getMessages = async (req, res) => {
     res.status(400).json(err);
   }
 }
+
+
+module.exports.getMessengers = async (req, res) => {
+  const { user } = req.params;
+  try {
+    const userF = await User.find({ _id: user })
+    console.log(userF);
+    const messengers = await Messenger.find({ user: user });
+    res.status(200).json({ messengers });
+  } catch (err) {
+    // const errors = handleErrors(err);
+    console.log(err);
+    res.status(400).json(err);
+  }
+}

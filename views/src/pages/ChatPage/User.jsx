@@ -1,14 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const User = ({ key, user }) => {
+  const [messenger, setMessenger] = useState();
+  useEffect(() => {
+    console.log(user);
+    axios
+      .get(`http://localhost:4000/get_user/${user.messenger}`)
+      .then((res) => {
+        console.log(res.data);
+        setMessenger(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user]);
   return (
-    <div key={key} className="flex p-2 hover:bg-gray-100 cursor-pointer">
+    <button
+      key={key}
+      className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
+    >
       <img
-        src={`http://localhost:4000/${user.profile_image}`}
+        className="h-8 w-8 rounded-full"
         alt=""
-        className="w-10 h-10 mx-2"
+        src={`http://localhost:4000/${messenger?.profile_image}`}
       />
-      <h2 className="text-gray-600 font-semibold mx-1">{user.first_name}</h2>
-      <h2 className="text-gray-600 font-semibold mx-1">{user.last_name}</h2>
-    </div>
+      <div className="ml-2 text-sm font-semibold">
+        {messenger?.first_name} {messenger?.last_name}
+      </div>
+    </button>
   );
 };
 

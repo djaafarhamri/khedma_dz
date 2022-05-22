@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
 // Data
-import data from './data.json';
 
 const Carousel = () => {
   const maxScrollWidth = useRef(0);
@@ -13,6 +12,71 @@ const Carousel = () => {
       setCurrentIndex((prevState) => prevState - 1);
     }
   };
+
+  const data = [
+    {
+      id: 1,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/1/200/300',
+    },
+    {
+      id: 2,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/2/200/300',
+    },
+    {
+      id: 3,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/3/200/300',
+    },
+    
+    {
+      id: 4,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/4/200/300',
+    },
+    {
+      id: 5,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/5/200/300',
+    },
+    {
+      id: 6,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/6/200/300',
+    },
+    {
+      id: 7,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/7/200/300',
+    },
+    {
+      id: 8,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/8/200/300',
+    },
+    {
+      id: 9,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/9/200/300',
+    },
+    {
+      id: 10,
+      title: 'Профиль',
+      description: 'Описание профиля',
+      image: 'https://picsum.photos/id/10/200/300',
+    },
+  ];
+
 
   const moveNext = () => {
     if (
@@ -103,31 +167,29 @@ const Carousel = () => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {data.resources.map((resource, index) => {
+          {data.map((resource, index) => {
             return (
               <div
                 key={index}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
+                className="carousel-item text-center relative w-80 h-56 snap-start"
               >
-                <a
-                  href={resource.link}
-                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
-                  style={{ backgroundImage: `url(${resource.imageUrl || ''})` }}
+                <p
+                  className="h-56 w-80 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                  style={{ backgroundImage: `url(${resource.image || ''})` }}
                 >
                   <img
-                    src={resource.imageUrl || ''}
+                    src={resource.image || ''}
                     alt={resource.title}
                     className="w-full aspect-square hidden"
                   />
-                </a>
-                <a
-                  href={resource.link}
+                </p>
+                <p
                   className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
                 >
                   <h3 className="text-white py-6 px-3 mx-auto text-xl">
                     {resource.title}
                   </h3>
-                </a>
+                </p>
               </div>
             );
           })}
