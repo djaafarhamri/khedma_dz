@@ -36,7 +36,7 @@ const RegisterForm = ({ goToNext }) => {
                         onChange={(e) => {
                           setFirstName(e.target.value);
                         }}
-                       type="text" class="peer h-10  border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       type="text" class="peer h-10  border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
                        <label for="First name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">First Name</label>
           </div>
           <div class="relative mb-2">
@@ -44,8 +44,8 @@ const RegisterForm = ({ goToNext }) => {
                         onChange={(e) => {
                           setLastName(e.target.value);
                         }}
-                       type="text" class="peer h-10  border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
-                       <label for="Last name" class="absolute left-0 -top-3.5 text-dark-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Last Name</label>
+                       type="text" class="peer h-10  border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="Last name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Last Name</label>
                   </div>
         </div>
         
