@@ -80,6 +80,24 @@ module.exports.getMessages = async (req, res) => {
     res.status(400).json(err);
   }
 };
+// get messages
+module.exports.getMessenger_id = async (req, res) => {
+  const { user, messenger } = req.body;
+  try {
+    const userF = await User.findOne({ _id: user });
+    if (userF) {
+      const messengers = userF.messengers.find(
+        (e) => e.messenger === messenger
+      );
+
+      res.status(200).json({ messenger_id: messengers._id });
+    }
+  } catch (err) {
+    // const errors = handleErrors(err);
+    console.log(err);
+    res.status(400).json(err);
+  }
+};
 
 module.exports.getMessengers = async (req, res) => {
   const { user } = req.params;

@@ -6,6 +6,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
   const [photo, setPhoto] = useState();
   const [adress, setAdress] = useState();
   const [phone, setPhone] = useState();
+  const [date_of_birth, setDateOdBirth] = useState();
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
   const inputRef = useRef(null);
@@ -60,6 +61,18 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
                 placeholder=""
               />
             </div>
+
+            <div className=" mt-6">
+              <p>Date Of Birth*</p>
+              <input
+                onChange={(e) => {
+                  setDateOdBirth(e.target.value);
+                }}
+                className="p-2 border border-solid"
+                type="text"
+                placeholder=""
+              />
+            </div>
             
             <div className=" mt-6">
               <p>Localisation*</p>
@@ -85,7 +98,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
       <OnboardingTrack
         onBack={onBack}
         goToNext={goToNext}
-        data={{ photo, adress, phone, location: { lat, lon } }}
+        data={{ photo, adress, phone, location: { lat, lon }, date_of_birth }}
         track="90%"
         buttonText="Publish Profile"
         onSubmit={onSubmit}

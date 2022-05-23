@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import 'flowbite';
+import "flowbite";
 import App from "./App";
 import { Provider } from "react-redux";
 import { configureStore } from "./stores/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import CheckUser from "./CheckRoutes/CheckUser";
+import { socket, SocketContext } from "./contexts/socket";
 
 const store = configureStore();
 
@@ -15,7 +16,9 @@ ReactDOM.render(
     <Provider store={store}>
       <CheckUser>
         <Router>
-          <App />
+          <SocketContext.Provider value={socket}>
+            <App />
+          </SocketContext.Provider>
         </Router>
       </CheckUser>
     </Provider>

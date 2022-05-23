@@ -10,7 +10,6 @@ const Professionals = () => {
     axios
       .get("http://localhost:4000/get_professionals")
       .then((res) => {
-        console.log("users: ", res.data);
         setUsers(res.data);
       })
       .catch((err) => {
@@ -26,7 +25,6 @@ const Professionals = () => {
     axios
       .get("http://localhost:4000/get_professionals_by_seach/" + value)
       .then((res) => {
-        console.log("users: ", res.data);
         setUsers(res.data);
       })
       .catch((err) => {

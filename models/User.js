@@ -23,6 +23,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "please enter your job"],
     },
+    date_of_birth: {
+      type: Date,
+      required: [true, "please enter your date of birth"],
+    },
     profile_image: {
       type: String,
     },

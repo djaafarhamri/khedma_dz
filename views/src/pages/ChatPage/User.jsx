@@ -8,7 +8,6 @@ const User = ({ key, user, setMessengerChat }) => {
     axios
       .get(`http://localhost:4000/get_user/${user}`)
       .then((res) => {
-        console.log(res.data);
         setMessenger(res.data);
       })
       .catch((err) => {

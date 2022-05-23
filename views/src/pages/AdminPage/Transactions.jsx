@@ -9,7 +9,6 @@ const Transactions = () => {
     axios
       .get("http://localhost:4000/get_transactions")
       .then((res) => {
-        console.log("transactions: ", res.data);
         setTransactions(res.data);
       })
       .catch((err) => {

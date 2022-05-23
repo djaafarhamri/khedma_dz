@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { SocketContext } from "../../contexts/socket";
 import Message from "./Message";
 import User from "./User";
 
@@ -8,17 +9,35 @@ const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [messenger_id, setMessenger_id] = useState(true);
   const [messenger, setMessenger] = useState(null);
+  const socket = useContext(SocketContext);
   useEffect(() => {
-    console.log("user: ", user?.user);
-    console.log("user le: ", user?.lenght);
+    console.log("please work")
+    socket.emit("online_user", { user: user?.user });
+    console.log("did it work")
+  }, [socket, user]);
+
+  useEffect(() => {
     axios
       .get(`http://localhost:4000/getMessengers/${user?.user}`)
       .then((res) => {
-        console.log("messengers: ", res.data.messengers);
         setUsers(res.data.messengers);
       });
   }, [user]);
+
+  useEffect(() => {
+    if (messenger) {
+      axios
+        .post(`http://localhost:4000/getMessenger_id`, {
+          user: user?.user,
+          messenger,
+        })
+        .then((res) => {
+          setMessenger_id(res.data.messenger_id);
+        });
+    }
+  }, [messenger, user]);
 
   useEffect(() => {
     if (messenger) {
@@ -28,7 +47,6 @@ const Chat = ({ user }) => {
           messenger,
         })
         .then((res) => {
-          console.log("messages: ", res.data.messages);
           setMessages(res.data.messages);
         })
         .catch((err) => {
@@ -37,7 +55,26 @@ const Chat = ({ user }) => {
     }
   }, [messenger, user]);
 
+  useEffect(() => {
+    socket.on("receiveMessage", (data) => {
+      setMessages((old) => [
+        ...old,
+        { message: data.message, sender: data.sender },
+      ]);
+    });
+    return () => {
+      socket.off("receiveMessage");
+    };
+  }, [setMessages, socket]);
+
   const sendMessage = () => {
+    if (message) {
+      socket.emit("sendMessage", {
+        room: messenger_id,
+        sender: user.user,
+        message
+      });
+    }
     axios
       .post(`http://localhost:4000/sendMessage`, {
         user: user?.user,
@@ -46,7 +83,6 @@ const Chat = ({ user }) => {
         messageType: "text",
       })
       .then((res) => {
-        console.log(res.data);
         setMessage("");
       })
       .catch((err) => {
@@ -87,6 +123,10 @@ const Chat = ({ user }) => {
                     key={i}
                     onClick={() => {
                       setMessenger(u);
+                      socket.emit("join", {
+                        room: messenger_id,
+                        user: user.user,
+                      });
                     }}
                   >
                     <User user={u} />

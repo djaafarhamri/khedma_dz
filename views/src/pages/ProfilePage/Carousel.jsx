@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 // Data
 
-const Carousel = () => {
+const Carousel = ({ user }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -12,6 +14,17 @@ const Carousel = () => {
       setCurrentIndex((prevState) => prevState - 1);
     }
   };
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/getServices/${user?.user}`)
+      .then((res) => {
+        setServices(res.data.services);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user?.user]);
 
   const data = [
     {
@@ -231,4 +244,10 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+const mapStateToProps = (state) => {
+  return { 
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Carousel);

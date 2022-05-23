@@ -3,10 +3,13 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const path = require("path");
+const http = require("http");
+const server = http.createServer(app);
 const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config();
 const bodyparser = require("body-parser");
+const socket = require("socket.io");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authRoute");
 const serviceRoute = require("./routes/serviceRoute");
@@ -55,13 +58,55 @@ app.use(messengersRoute);
 app.get('*', checkUser)
 
 // Connect to the db
+
+
+// ! sockets
+
+const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+var online_users = [];
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("online_user", (data) => {
+    console.log("oline user : ", data);
+    online_users.push({ user: data.user, socket_id: socket.id });
+    socket.broadcast.emit("new_online_user");
+  });
+  
+  console.log("user connected");
+  socket.on("join", (data) => {
+    console.log("join: ", data);
+    socket.join(data.room);
+  });
+  socket.on("sendMessage", (data) => {
+    console.log("sendMessage: ", data);
+    io.in(data.room).emit("receiveMessage", {
+      sender: data.sender,
+      message: data.message,
+    });
+  });
+  //seen
+  
+  // leave room
+  socket.on("leave", (data) => {
+    socket.leave(data.room);
+  });
+  socket.on("disconnect", () => {
+    online_users = online_users.filter((e) => e.socket_id !== socket.id);
+    console.log("user disconnected");
+  });
+});
+
 mongoose
   .connect("mongodb://localhost:27017/khedma", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log("listening on port : ", PORT);
     });
   })
