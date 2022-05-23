@@ -3,6 +3,7 @@ import img from "../../assets/O.jpg"
 import { useParams } from "react-router";
 import { useDataSource } from "../../hooks/useDataSource";
 import Carousel from "./Carousel";
+import Comment from "./Comment";
 
 const Profile = () => {
   const { _id } = useParams();
@@ -11,8 +12,8 @@ const Profile = () => {
   return user ? (
     <div className="flex">Not found</div>
     ) : (
-        <div className="profile bg-gray-200 font-inter max-h-screen text-dark-blue mt-20 ">
-            <div className="grid sm:grid-cols-12 gap-8 mx-5 py-5">
+        <div className="profile bg-gray-200 font-inter h-full text-dark-blue mt-20 ">
+            <div className="grid sm:grid-cols-12 gap-8  mx-5 mb-4 py-5">
                 {/*user info */}
                 <div className=" col-span-12 md:col-span-3 bg-white p-3 rounded-md">
                     <div className="flex flex-col space-y-3 ">
@@ -40,9 +41,12 @@ const Profile = () => {
                         <div>
                             <Carousel/>
                         </div>
+                        
                     </div>
-
                 </div>
+                <div className="col-span-full">
+                            <Comment/>
+                        </div>
             </div>
         </div>
      );
