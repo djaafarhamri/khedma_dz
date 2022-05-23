@@ -112,7 +112,7 @@ export default function Modal() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                 <div className="flex  justify-center items-center ">
-                <div className="flex-col justify-center space-y-4 bg-white py-12 px-24 ">
+                <div className="flex-col justify-center space-y-4 bg-white py-6 px-12 lg:py-12 lg:px-24 ">
                   <div>
                   <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Name</label>
                  <input
@@ -142,7 +142,7 @@ export default function Modal() {
                   placeholder="Job"
                   />
                   </div>
-                  <h1 className="text-dark-blue font-semibold text-xl">price</h1>
+                  <h1 className="text-dark-blue font-semibold text-xl ">price</h1>
                   <div className="flex">
                   <div>
                   <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Minimum</label>
