@@ -14,7 +14,7 @@ const Card = ({key, service}) => {
                 </div>
               </div>
               <div class="p-4">
-                <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-base">Ahmed Yacine</span>
+                <span class="inline-block px-2 py-1 leading-none  text-dark-blue rounded-full font-semibold uppercase tracking-wide text-base">Ahmed Yacine</span>
                 <h2 class="mt-2 mb-2  font-bold">programmer</h2>
                 {/* <h2 class="mt-2 mb-2  font-bold">{service.title}</h2> */}
                 <p class="text-sm">Description: Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.</p>

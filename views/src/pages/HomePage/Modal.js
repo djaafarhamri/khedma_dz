@@ -112,12 +112,84 @@ export default function Modal() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                 <div className="flex  justify-center items-center ">
-                <div className="flex-col justify-center  bg-white py-12 px-24 ">
-                     <div class="relative mb-2">
-                       <input id="email" name="email" type="text" class="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="." />
-                       <label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email address</label>
+                <div className="flex-col justify-center space-y-4 bg-white py-12 px-24 ">
+                  <div>
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Name</label>
+                 <input
+                  type="text"
+                  class="
+                    form-control
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
+                  "
+                  id="exampleFormControlInput1"
+                  placeholder="Name"
+                  />
                   </div>
+                  
+                  <div>
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Location</label>
+                 <input
+                  type="text"
+                  class="
+                    form-control
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
+                  "
+                  id="exampleFormControlInput1"
+                  placeholder="Location"
+                  />
+                  </div>
+
+                  <div>
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Job</label>
+                 <input
+                  type="text"
+                  class="
+                    form-control
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
+                  "
+                  id="exampleFormControlInput1"
+                  placeholder="Job"
+                  />
+                  </div>
+
                 </div>
+                
                 </div>
                 </div>
                 {/*footer*/}

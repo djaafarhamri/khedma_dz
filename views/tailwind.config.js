@@ -5,7 +5,13 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+    },
+    },
+
     colors: {
       gray: colors.gray,
       indigo: colors.indigo,
