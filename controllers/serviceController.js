@@ -81,7 +81,6 @@ module.exports.get_service = async (req, res) => {
   const { _id } = req.params;
   try {
     const service = await Service.findById(_id);
-    console.log(service);
     res.status(200).json(service);
   } catch (err) {
     const errors = handleErrors(err);

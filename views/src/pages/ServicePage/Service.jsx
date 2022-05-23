@@ -22,7 +22,7 @@ const Service = ({ user }) => {
   const buy = () => {
     axios
       .post("http://localhost:4000/newMessenger", {
-        user: user.user,
+        user: user?.user,
         messenger: service.created_by,
       })
       .then((res) => {
