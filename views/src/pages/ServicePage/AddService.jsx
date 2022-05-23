@@ -92,7 +92,7 @@ const AddService = ({ user, onAddService, setShowAddService }) => {
         </div>
         <div className="flex justify-end sticky bottom-[0px] bg-[#fff] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.2)]">
           <button
-            className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-2 p-2 w-48 font-bold"
+            className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan m-2 p-2 w-48 font-bold"
             onClick={() => {
               onAddService({ ...data, user: user.user }, cover);
               setShowAddService(false);

@@ -1,5 +1,6 @@
 import hero from'../../assets/hero.svg'
 import ahmed from '../../assets/ahmed.JPG'
+import djaafar from '../../assets/djaafar.jpg'
 
 const Landing = () => {
     return ( 
@@ -9,7 +10,7 @@ const Landing = () => {
             <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
               <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src={hero} />
               <div class="text-center lg:w-2/3 w-full">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Microdosing synth tattooed vexillologist</h1>
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Find the best professionals in your region</h1>
                 <p class="mb-8 leading-relaxed">Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing tousled. Chambray dreamcatcher trust fund, kitsch vice godard disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh. Pour-over meditation PBR&B pickled ennui celiac mlkshk freegan photo booth af fingerstache pitchfork.</p>
                 <div class="flex justify-center">
                   <button class="inline-flex text-white bg-green-cyan border-0 py-2 px-6 focus:outline-none hover:bg-green-400 rounded text-lg">Register</button>
@@ -22,7 +23,7 @@ const Landing = () => {
                <section class="text-gray-600 body-font">
          <div class="container px-5 py-24 mx-auto">
            <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
-             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-dark-blue">Pitchfork Our Features</h1>
+             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-dark-blue">Our Features</h1>
              <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">our platform offer you many amazing features to use and to save u effort and time with user exp.</p>
            </div>
            <div class="flex flex-wrap -m-4">
@@ -120,7 +121,7 @@ const Landing = () => {
         <div>
           <img
             className="object-cover w-24 h-24 rounded-full shadow"
-            src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            src={djaafar}
             alt="Person"
           />
           <div className="flex flex-col justify-center mt-2">
