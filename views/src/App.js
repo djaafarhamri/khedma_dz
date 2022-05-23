@@ -17,11 +17,15 @@ import Clients from "./pages/AdminPage/Clients";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isChat, setIsChat] = useState(false);
   const location = useLocation();
   useEffect(() => {
     setIsAdmin(
       location.pathname.toLocaleLowerCase().substring(0, 6) === "/admin" 
     );
+    setIsChat(
+      location.pathname.toLocaleLowerCase().substring(0, 5) === "/chat"
+    )
   }, [location]);
   return (
     <div className="App " >
@@ -55,7 +59,7 @@ function App() {
         {/* 404 */}
         <Route path="*" element={<div>404</div>} />
       </Routes>
-      {!isAdmin && <Footer/>}
+      {(!isAdmin && !isChat) && <Footer/>}
     </div>
   );
 }

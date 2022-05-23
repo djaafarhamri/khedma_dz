@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { SocketContext } from "../../contexts/socket";
 import Message from "./Message";
@@ -12,6 +12,12 @@ const Chat = ({ user }) => {
   const [messenger_id, setMessenger_id] = useState(null);
   const [messenger, setMessenger] = useState(null);
   const socket = useContext(SocketContext);
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     console.log("please work");
     socket.emit("online_user", { user: user?.user });
@@ -33,6 +39,7 @@ const Chat = ({ user }) => {
         user: user.user,
       });
     }
+    scrollToBottom();
   }, [messenger_id, socket, user]);
 
   useEffect(() => {
@@ -70,6 +77,7 @@ const Chat = ({ user }) => {
         ...old,
         { message: data.message, sender: data.sender },
       ]);
+      scrollToBottom();
     });
     return () => {
       socket.off("receiveMessage");
@@ -145,15 +153,16 @@ const Chat = ({ user }) => {
             <div className="flex flex-col h-full overflow-x-auto mb-4">
               <div className="flex flex-col h-full">
                 <div className="grid grid-cols-12 gap-y-2">
-                  {messages &&
-                    messages.map((m, i) => (
-                      <Message
-                        message={m}
-                        key={i}
-                        user={user}
-                        messenger={messenger}
-                      />
-                    ))}
+                    {messages &&
+                      messages.map((m, i) => (
+                        <Message
+                          message={m}
+                          key={i}
+                          user={user}
+                          messenger={messenger}
+                        />
+                      ))}
+                <div ref={messagesEndRef}></div>
                 </div>
               </div>
             </div>
