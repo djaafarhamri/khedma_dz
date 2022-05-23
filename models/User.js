@@ -122,30 +122,25 @@ const userSchema = mongoose.Schema(
     },
     services: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Service",
+        type: String,
       },
     ],
     reviews: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review",
+        type: String
       },
     ],
     orders: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
+        type: String
       },
     ],
     messengers: [{
       _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Messenger",
+        type: String
       },
       messenger: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: String
       },
 
     }],

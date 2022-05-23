@@ -2,7 +2,7 @@
 const Message = ({ user, messenger, message }) => {
   return (
     <>
-      {message.sender === messenger._id ? (
+      {message.sender !== user?.user ? (
         <div className="col-start-1 col-end-8 p-3 rounded-lg">
           <div className="flex flex-row items-center">
             <img

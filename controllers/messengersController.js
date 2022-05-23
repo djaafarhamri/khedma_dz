@@ -36,8 +36,13 @@ module.exports.sendMessage = async (req, res) => {
   const { user, messenger, message, messageType, offer } = req.body;
   try {
     if (messageType === "text") {
+      const userF = await User.findOne({ _id: user });
+      const messengers = userF.messengers.find(
+        (e) => e.messenger === messenger
+      );
+
       await Messenger.updateOne(
-        { _id: messenger },
+        { _id: messengers._id },
         { $push: { messages: { messageType, sender: user, message } } }
       );
     } else if (messageType === "offer") {
@@ -45,12 +50,14 @@ module.exports.sendMessage = async (req, res) => {
         { _id: messenger },
         { $push: { messages: { messageType, sender: user, offer } } }
       );
-    } 
-    res.status(200).json({ message: {
-      messageType,
-      sender: user,
-      message,
-    } });
+    }
+    res.status(200).json({
+      message: {
+        messageType,
+        sender: user,
+        message,
+      },
+    });
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);
@@ -61,35 +68,26 @@ module.exports.sendMessage = async (req, res) => {
 // get messages
 module.exports.getMessages = async (req, res) => {
   const { user, messenger } = req.body;
-  console.log("qqqqqqqqqqqqq: ", messenger);
   try {
-    const messengers = await User.find({
-      _id: user,
-      messengers: { $elemMatch: { messenger } },
-    });
-    console.log("sssssssss:", messengers)
-    
+    const userF = await User.findOne({ _id: user });
+    const messengers = userF.messengers.find((e) => e.messenger === messenger);
+
     const messages = await Messenger.findOne({ _id: messengers._id });
-    res.status(200).json({ messages });
+    res.status(200).json(messages);
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);
     res.status(400).json(err);
   }
-}
-
+};
 
 module.exports.getMessengers = async (req, res) => {
   const { user } = req.params;
-  console.log("user: ", user);
   try {
     const messengers = await Messenger.find({ users: { $in: [user] } });
-    console.log("pleaaaaaaaaase: ", messengers);
-    var friends = []
+    var friends = [];
     for (let m of messengers) {
-      console.log("m: ", m);
       var friend = m.users.filter((u) => u !== user);
-      console.log("friend: ", friend);
       friends.push(friend[0]);
     }
     res.status(200).json({ messengers: friends });
@@ -98,4 +96,4 @@ module.exports.getMessengers = async (req, res) => {
     console.log(err);
     res.status(400).json(err);
   }
-}
+};
