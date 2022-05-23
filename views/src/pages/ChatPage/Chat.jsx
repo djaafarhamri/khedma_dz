@@ -9,13 +9,13 @@ const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const [messenger_id, setMessenger_id] = useState(true);
+  const [messenger_id, setMessenger_id] = useState(null);
   const [messenger, setMessenger] = useState(null);
   const socket = useContext(SocketContext);
   useEffect(() => {
-    console.log("please work")
+    console.log("please work");
     socket.emit("online_user", { user: user?.user });
-    console.log("did it work")
+    console.log("did it work");
   }, [socket, user]);
 
   useEffect(() => {
@@ -25,6 +25,15 @@ const Chat = ({ user }) => {
         setUsers(res.data.messengers);
       });
   }, [user]);
+
+  useEffect(() => {
+    if (messenger_id) {
+      socket.emit("join", {
+        room: messenger_id,
+        user: user.user,
+      });
+    }
+  }, [messenger_id, socket, user]);
 
   useEffect(() => {
     if (messenger) {
@@ -72,7 +81,7 @@ const Chat = ({ user }) => {
       socket.emit("sendMessage", {
         room: messenger_id,
         sender: user.user,
-        message
+        message,
       });
     }
     axios
@@ -123,10 +132,6 @@ const Chat = ({ user }) => {
                     key={i}
                     onClick={() => {
                       setMessenger(u);
-                      socket.emit("join", {
-                        room: messenger_id,
-                        user: user.user,
-                      });
                     }}
                   >
                     <User user={u} />
