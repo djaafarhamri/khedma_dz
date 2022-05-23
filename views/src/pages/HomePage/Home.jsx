@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Card from "./Card";
 import { useDataSource } from "../../hooks/useDataSource";
 import { useSearchParams } from "react-router-dom";

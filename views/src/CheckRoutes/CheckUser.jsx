@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import Loader from "../pages/sharedComponents/Loader";
 import { checkUser } from "../stores/userStore/userThunk";
 
 const CheckUser = ({ children, onLoad }) => {
@@ -9,7 +10,7 @@ const CheckUser = ({ children, onLoad }) => {
     onLoad(setIsLoading);
   }, [onLoad]);
 
-  return isLoading ? <div>isLoading</div> : children;
+  return isLoading ? <Loader /> : children;
 };
 
 const mapDispatchToProps = (dispatch) => {
