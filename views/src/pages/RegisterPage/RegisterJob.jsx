@@ -7,12 +7,12 @@ const RegisterJob = ({ goToNext, onBack }) => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <h2 className="lg:text-4xl font-bold text-xl mt-10">
+      <div className="flex flex-col mt-16">
+        <h2 className="lg:text-4xl font-bold text-xl text-dark-blue mt-10">
           Got it. Now, add a title and a description to tell
           <br /> the world what you do.
         </h2>
-        <p className="mt-6">
+        <p className="mt-6 text-gray-500">
           It’s the very first thing clients see, so make it count. Stand out by
           describing your expertise
           <br /> in your own words.

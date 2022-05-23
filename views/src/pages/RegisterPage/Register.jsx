@@ -31,7 +31,7 @@ const Register = ({signUp}) => {
   };
 
   return (
-    <div className="h-screen flex justify-center">
+    <div className="h-screen flex justify-center ">
       <RegisterOnboarding
         onFinish={() => {
           console.log("registerData : ", registerData);

@@ -13,8 +13,8 @@ const RegisterEducation = ({ goToNext, onBack }) => {
 
   return (
     <>
-      <div className="w-screen">
-        <h2 className="ml-32 lg:text-4xl font-bold text-xl mt-10">
+      <div className="w-screen mt-16">
+        <h2 className="ml-32 lg:text-4xl text-dark-blue font-bold text-xl mt-10">
           Great way to get clients is by your education
         </h2>
         <div className="flex flex-wrap self-start ml-32 pb-32">

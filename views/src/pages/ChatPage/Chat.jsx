@@ -91,15 +91,15 @@ const Chat = ({ user }) => {
   };
 
   return (
-    <div className="flex h-screen antialiased text-gray-800">
+    <div className="flex h-screen antialiased text-gray-800 mt-14">
       <div className="flex flex-row h-full w-full overflow-x-hidden">
         <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
           <div className="flex flex-row items-center justify-center h-12 w-full">
-            <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
+            <div className="flex items-center justify-center rounded-2xl text-dark-blue bg-indigo-100 h-10 w-10">
               <svg
                 className="w-6 h-6"
                 fill="none"
-                stroke="currentColor"
+                stroke="blue"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -155,7 +155,7 @@ const Chat = ({ user }) => {
             {messenger && (
               <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
                 <div>
-                  <button className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+                  <button className="flex items-center justify-center bg-dark-blue hover:bg-black rounded-xl text-white px-4 py-1 flex-shrink-0">
                     <span>request</span>
                   </button>
                 </div>
@@ -176,7 +176,7 @@ const Chat = ({ user }) => {
                     onClick={() => {
                       sendMessage();
                     }}
-                    className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                    className="flex items-center justify-center bg-dark-blue hover:bg-black rounded-xl text-white px-4 py-1 flex-shrink-0"
                   >
                     <span>Send</span>
                     <span className="ml-2">

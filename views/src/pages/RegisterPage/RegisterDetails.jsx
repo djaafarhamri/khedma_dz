@@ -26,8 +26,8 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <h2 className="lg:text-4xl font-bold text-xl mt-6">
+      <div className="flex flex-col mt-16">
+        <h2 className="lg:text-4xl text-dark-blue font-bold text-xl mt-6">
           A few last details. then you're ready to go!
         </h2>
         <div className="flex justify-center mt-4">
@@ -69,7 +69,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
                   setDateOdBirth(e.target.value);
                 }}
                 className="p-2 border border-solid"
-                type="text"
+                type="date"
                 placeholder=""
               />
             </div>
@@ -90,7 +90,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
                 placeholder="longitude,latitude"
                 readOnly
                 />
-                <button onClick={getLocation}>Get Localisation</button>
+                <button onClick={getLocation} className="bg-green-cyan rounded-md text-white ml-2 py-2 px-3 text-lg">Get Localisation</button>
             </div>
           </div>
         </div>
