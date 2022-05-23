@@ -14,7 +14,7 @@ const OnboardingTrack = ({
     <div className="fixed bottom-[0px] left-[0px] w-screen bg-[#fff]">
       <div
         style={{ width: track }}
-        className={`left-[0px] h-2 bg-[#14a800]`}
+        className={`left-[0px] h-2 bg-green-cyan`}
       ></div>
       <div className="flex justify-between px-8 py-10">
         <button
@@ -25,7 +25,7 @@ const OnboardingTrack = ({
         </button>
         {isSubmit ? (
           <button
-            className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] p-2 w-64 font-bold"
+            className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan p-2 w-64 font-bold"
             onClick={() => {
               onSubmit(data);
               submit()
@@ -35,7 +35,7 @@ const OnboardingTrack = ({
           </button>
         ) : (
           <button
-            className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] p-2 w-64 font-bold"
+            className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan p-2 w-64 font-bold"
             onClick={() => {
               !error && goToNext(data);
             }}

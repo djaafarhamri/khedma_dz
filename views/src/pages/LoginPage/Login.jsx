@@ -29,7 +29,7 @@ const Login = ({ onLogin }) => {
           placeholder="Password"
         />
         <button
-          className="rounded-lg border border-solid border-[#14a800] text-[#fff] bg-[#14a800] m-10 p-2 w-64 font-bold"
+          className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan m-10 p-2 w-64 font-bold"
           onClick={() =>
             email && password
               ? onLogin(email, password, nav)
@@ -40,7 +40,7 @@ const Login = ({ onLogin }) => {
         </button>
         <p>dont have an account yet?</p>
         <button
-          className="rounded-lg border-2 border-solid border-[#14a800] m-10 p-2 w-64 font-bold"
+          className="rounded-lg border-2 border-solid border-green-cyan m-10 p-2 w-64 font-bold"
           onClick={() => nav('/register')}
         >
           Sign Up

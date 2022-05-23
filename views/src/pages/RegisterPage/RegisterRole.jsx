@@ -15,9 +15,9 @@ const RegisterRole = ({ goToNext }) => {
             setRole("professional");
             console.log(role)
           }}
-          className={`m-10 rounded-lg relative cursor-pointer hover:bg-[#ebf4fb] flex flex-col items-center justify-center border-2 border-solid h-[192px] w-[192px] ${role === 'professional' ? 'border-[#14a800]' : ''}`}
+          className={`m-10 rounded-lg relative cursor-pointer hover:bg-[#ebf4fb] flex flex-col items-center justify-center border-2 border-solid h-[192px] w-[192px] ${role === 'professional' ? 'border-green-cyan' : ''}`}
         >
-          <div className={`absolute bg-white top-1 right-1 border-2 border-solid rounded-full w-4 h-4 ${(role === 'professional') && "bg-[#14a800]"}`}></div>
+          <div className={`absolute bg-white top-1 right-1 border-2 border-solid rounded-full w-4 h-4 ${(role === 'professional') && "bg-green-cyan"}`}></div>
           <img className="h-32" src={worker} alt="" />
           <h4>Professional</h4>
         </div>
@@ -25,9 +25,9 @@ const RegisterRole = ({ goToNext }) => {
           onClick={() => {
             setRole("client");
           }}
-          className={`m-10 rounded-lg relative cursor-pointer hover:bg-[#ebf4fb] flex flex-col items-center justify-center border-2 border-solid h-[192px] w-[192px] ${role === 'client' ? 'border-[#14a800]' : ''}`}
+          className={`m-10 rounded-lg relative cursor-pointer hover:bg-[#ebf4fb] flex flex-col items-center justify-center border-2 border-solid h-[192px] w-[192px] ${role === 'client' ? 'border-green-cyan' : ''}`}
         >
-          <div className={`absolute bg-white top-1 right-1 border-2 border-solid rounded-full w-4 h-4 ${role === 'client' && "bg-[#14a800]"}`}></div>
+          <div className={`absolute bg-white top-1 right-1 border-2 border-solid rounded-full w-4 h-4 ${role === 'client' && "bg-green-cyan"}`}></div>
           <img className="h-32" src={avatar} alt="" />
           <h4>Client</h4>
         </div>
