@@ -117,22 +117,7 @@ export default function Modal() {
                   <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Name</label>
                  <input
                   type="text"
-                  class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
-                  "
+                  class="input"
                   id="exampleFormControlInput1"
                   placeholder="Name"
                   />
@@ -142,22 +127,7 @@ export default function Modal() {
                   <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Location</label>
                  <input
                   type="text"
-                  class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
-                  "
+                  class="input "
                   id="exampleFormControlInput1"
                   placeholder="Location"
                   />
@@ -167,27 +137,33 @@ export default function Modal() {
                   <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Job</label>
                  <input
                   type="text"
-                  class="
-                    form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-dark-blue focus:bg-white focus:border-green-cyan focus:outline-none
-                  "
+                  class="input"
                   id="exampleFormControlInput1"
                   placeholder="Job"
                   />
                   </div>
-
+                  <h1 className="text-dark-blue font-semibold text-xl">price</h1>
+                  <div className="flex">
+                  <div>
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Minimum</label>
+                 <input
+                  type="text"
+                  class="input"
+                  id="exampleFormControlInput1"
+                  placeholder="Min-Price"
+                  />
+                  </div>
+                  <div>
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Maximum</label>
+                 <input
+                  type="text"
+                  class="input"
+                  id="exampleFormControlInput1"
+                  placeholder="Max-Price"
+                  />
+                  </div>
+                  </div>
+                  
                 </div>
                 
                 </div>
