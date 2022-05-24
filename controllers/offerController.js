@@ -10,15 +10,15 @@ const handleErrors = (error) => {
 };
 
 module.exports.create_offer = async (req, res) => {
-  const { id, user_id, price, time } = req.body;
+  const { client, price, dueDate, descri } = req.body;
   try {
     const offer = await Offer.create({
-      service: id,
-      client: user_id,
+      client,
       price,
-      time,
+      dueDate,
+      descri
     });
-    res.status(200).json({ offer: offer._id });
+    res.status(200).json({ offer });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

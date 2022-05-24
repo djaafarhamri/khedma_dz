@@ -2,15 +2,8 @@
 const mongoose = require("mongoose");
 const offerSchema = mongoose.Schema(
   {
-    service: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Service",
-      required: [true, "please enter a service"],
-    },
     client: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "please enter a user"],
+      type: String
     },
     accepted: {
       type: Boolean,
@@ -28,9 +21,12 @@ const offerSchema = mongoose.Schema(
       type: Number,
       required: [true, "please enter a price"],
     },
-    time: {
+    dueDate: {
       type: Date,
       required: [true, "please enter a time"],
+    },
+    descri: {
+      type: String,
     },
     sold_at: {
       type: Date,

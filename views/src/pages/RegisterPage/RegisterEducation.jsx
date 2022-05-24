@@ -73,7 +73,7 @@ const RegisterEducation = ({ goToNext, onBack }) => {
       <OnboardingTrack
         onBack={onBack}
         goToNext={goToNext}
-        data={{ educations }}
+        data={{ education: educations }}
         track="55%"
         buttonText="Next, Add a Category"
       />

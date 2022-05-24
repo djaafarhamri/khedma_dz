@@ -23,9 +23,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "please enter your job"],
     },
-    date_of_birth: {
+    birth_date: {
       type: Date,
       required: [true, "please enter your date of birth"],
+    },
+    adress: {
+      type: String,
+      required: [true, "please enter your adress"],
     },
     profile_image: {
       type: String,
@@ -83,29 +87,31 @@ const userSchema = mongoose.Schema(
         },
       },
     ],
-    education: [{
-      school: {
-        type: String,
+    education: [
+      {
+        school: {
+          type: String,
+        },
+        degree: {
+          type: String,
+        },
+        fieldofstudy: {
+          type: String,
+        },
+        from: {
+          type: Date,
+        },
+        to: {
+          type: Date,
+        },
+        current: {
+          type: Boolean,
+        },
+        description: {
+          type: String,
+        },
       },
-      degree: {
-        type: String,
-      },
-      fieldofstudy: {
-        type: String,
-      },
-      from: {
-        type: Date,
-      },
-      to: {
-        type: Date,
-      },
-      current: {
-        type: Boolean,
-      },
-      description: {
-        type: String,
-      },
-    }],
+    ],
     certifications: {
       type: [String],
     },
@@ -122,7 +128,6 @@ const userSchema = mongoose.Schema(
       lat: {
         type: Number,
       },
-      
     },
     services: [
       {
@@ -131,23 +136,38 @@ const userSchema = mongoose.Schema(
     ],
     reviews: [
       {
-        type: String
+        first_name: {
+          type: String,
+        },
+        last_name: {
+          type: String,
+        },
+        profile_image: {
+          type: String,
+        },
+        rating: {
+          type: Number,
+        },
+        comment: {
+          type: String,
+        },
       },
     ],
     orders: [
       {
-        type: String
+        type: String,
       },
     ],
-    messengers: [{
-      _id: {
-        type: String
+    messengers: [
+      {
+        _id: {
+          type: String,
+        },
+        messenger: {
+          type: String,
+        },
       },
-      messenger: {
-        type: String
-      },
-
-    }],
+    ],
   },
   { collection: "users" }
 );
@@ -175,7 +195,7 @@ userSchema.pre("validate", function (next) {
   }
   return next();
 });
- 
+
 userSchema.pre("validate", function (next) {
   //3, or whatever value you're checking for
   if (this.type !== "professional") {

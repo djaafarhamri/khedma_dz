@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const Rating = () => {
-    const [rating, setRating] = useState(0);
+const Rating = ({rating, setRating}) => {
     const [hover, setHover] = useState(0);
     return (
       <div >

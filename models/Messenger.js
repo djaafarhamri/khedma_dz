@@ -23,14 +23,12 @@ const messengerSchema = mongoose.Schema(
           type: String,
           enum: ["text", "offer"],
         },
-        offer: {
-          type: String
-        },
+        
         sender: {
           type: String
         },
         message: {
-          type: String,
+          type: Object,
         },
         created_at: {
           type: Date,

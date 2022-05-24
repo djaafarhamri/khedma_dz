@@ -45,7 +45,7 @@ const Btn = ({ user, onLogout }) => {
   };
 
   const handleProfile = () => {
-    nav("/profile/" + user._id);
+    nav("/profile/" + user?.user);
     setAnchorEl(null);
   };
   const [showAddService, setShowAddService] = useState(false);
@@ -92,7 +92,7 @@ const Btn = ({ user, onLogout }) => {
             }}
           >
             <MenuItem onClick={handleProfile}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={() => {setShowAddService(true)}}>Add service</MenuItem>
             <MenuItem
               onClick={() => {
                 onLogout(nav);
@@ -116,16 +116,7 @@ const Btn = ({ user, onLogout }) => {
           </Link>
         </Stack>
       )}
-      {user?.role === "professional" && (
-        <button
-          className="btn"
-          onClick={() => {
-            setShowAddService(true);
-          }}
-        >
-          Add Service
-        </button>
-      )}
+      
       {showAddService && <AddService setShowAddService={setShowAddService} />}
     </div>
   );

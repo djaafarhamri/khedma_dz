@@ -98,7 +98,7 @@ const RegisterDetails = ({ goToNext, onBack, submit, onSubmit }) => {
       <OnboardingTrack
         onBack={onBack}
         goToNext={goToNext}
-        data={{ photo, adress, phone, location: { lat, lon }, date_of_birth }}
+        data={{ photo, adress, phone, location: { lat, lon }, birth_date:date_of_birth }}
         track="90%"
         buttonText="Publish Profile"
         onSubmit={onSubmit}

@@ -86,6 +86,7 @@ io.on("connection", (socket) => {
     io.in(data.room).emit("receiveMessage", {
       sender: data.sender,
       message: data.message,
+      messageType: data.messageType,
     });
   });
   //seen

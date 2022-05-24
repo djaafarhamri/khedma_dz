@@ -9,7 +9,7 @@ module.exports.newMessenger = async (req, res) => {
       messengers: { $elemMatch: { messenger } },
     });
     if (isExist.length > 0) {
-      res.status(400).json({ message: "Already exist" });
+      res.status(200).json({ messenger: isExist._id });
     } else {
       const messengers = await Messenger.create({
         users: [user, messenger],
@@ -33,24 +33,15 @@ module.exports.newMessenger = async (req, res) => {
 
 // send message
 module.exports.sendMessage = async (req, res) => {
-  const { user, messenger, message, messageType, offer } = req.body;
+  const { user, messenger, message, messageType } = req.body;
+  console.log(req.body);
   try {
-    if (messageType === "text") {
-      const userF = await User.findOne({ _id: user });
-      const messengers = userF.messengers.find(
-        (e) => e.messenger === messenger
-      );
-
-      await Messenger.updateOne(
-        { _id: messengers._id },
-        { $push: { messages: { messageType, sender: user, message } } }
-      );
-    } else if (messageType === "offer") {
-      await Messenger.updateOne(
-        { _id: messenger },
-        { $push: { messages: { messageType, sender: user, offer } } }
-      );
-    }
+    const userF = await User.findOne({ _id: user });
+    const messengers = userF.messengers.find((e) => e.messenger === messenger);
+    await Messenger.updateOne(
+      { _id: messengers._id },
+      { $push: { messages: { messageType, sender: user, message } } }
+    );
     res.status(200).json({
       message: {
         messageType,

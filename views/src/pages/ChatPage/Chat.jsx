@@ -3,12 +3,15 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { SocketContext } from "../../contexts/socket";
 import Message from "./Message";
+import AddOfferModal from "./AddOfferModel";
 import User from "./User";
 
 const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
+  const [offer, setOffer] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [messenger_id, setMessenger_id] = useState(null);
   const [messenger, setMessenger] = useState(null);
   const socket = useContext(SocketContext);
@@ -75,14 +78,19 @@ const Chat = ({ user }) => {
     socket.on("receiveMessage", (data) => {
       setMessages((old) => [
         ...old,
-        { message: data.message, sender: data.sender },
+        {
+          message: data.message,
+          sender: data.sender,
+          messageType: data.messageType,
+          offer,
+        },
       ]);
       scrollToBottom();
     });
     return () => {
       socket.off("receiveMessage");
     };
-  }, [setMessages, socket]);
+  }, [offer, setMessages, socket]);
 
   const sendMessage = () => {
     if (message) {
@@ -90,6 +98,7 @@ const Chat = ({ user }) => {
         room: messenger_id,
         sender: user.user,
         message,
+        messageType: "text",
       });
     }
     axios
@@ -107,6 +116,49 @@ const Chat = ({ user }) => {
       });
   };
 
+  const sendOffer = (price, dueDate, descri) => {
+    axios
+      .post(`http://localhost:4000/create_offer`, {
+        client: messenger,
+        price,
+        dueDate,
+        descri,
+      })
+      .then((res) => {
+        setOffer(res.data.offer);
+        console.log("offer 34434434:", res.data.offer);
+        socket.emit("sendMessage", {
+          room: messenger_id,
+          sender: user.user,
+          message: {
+            price,
+            dueDate,
+            descri,
+            _id: res.data.offer._id,
+          },
+          messageType: "offer",
+        });
+        axios
+          .post(`http://localhost:4000/sendMessage`, {
+            user: user?.user,
+            messenger,
+            message: {
+              price,
+              dueDate,
+              descri,
+              _id: res.data.offer._id,
+            },
+            messageType: "offer",
+          })
+          .then((res) => {
+            setMessage("");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  };
+
   return (
     <div className="flex h-screen antialiased text-gray-800 mt-14">
       <div className="flex flex-row h-full w-full overflow-x-hidden">
@@ -121,8 +173,8 @@ const Chat = ({ user }) => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   stroke-width="2"
                   d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                 ></path>
@@ -153,26 +205,40 @@ const Chat = ({ user }) => {
             <div className="flex flex-col h-full overflow-x-auto mb-4">
               <div className="flex flex-col h-full">
                 <div className="grid grid-cols-12 gap-y-2">
-                    {messages &&
-                      messages.map((m, i) => (
-                        <Message
-                          message={m}
-                          key={i}
-                          user={user}
-                          messenger={messenger}
-                        />
-                      ))}
-                <div ref={messagesEndRef}></div>
+                  {messages &&
+                    messages.map((m, i) => (
+                      <Message
+                        message={m}
+                        key={i}
+                        user={user}
+                        messenger={messenger}
+                        messenger_id={messenger_id}
+                      />
+                    ))}
+                  <div ref={messagesEndRef}></div>
                 </div>
               </div>
             </div>
             {messenger && (
               <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
-                <div>
-                  <button className="flex items-center justify-center bg-dark-blue hover:bg-black rounded-xl text-white px-4 py-1 flex-shrink-0">
-                    <span>request</span>
-                  </button>
-                </div>
+                {showModal && (
+                  <AddOfferModal
+                    setShowModal={setShowModal}
+                    sendOffer={sendOffer}
+                  />
+                )}
+                {user?.role === "professional" && (
+                  <div>
+                    <button
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
+                      className="flex items-center justify-center bg-dark-blue hover:bg-black rounded-xl text-white px-4 py-1 flex-shrink-0"
+                    >
+                      <span>offer</span>
+                    </button>
+                  </div>
+                )}
                 <div className="flex-grow ml-4">
                   <div className="relative w-full">
                     <input
@@ -202,8 +268,8 @@ const Chat = ({ user }) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           stroke-width="2"
                           d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                         ></path>

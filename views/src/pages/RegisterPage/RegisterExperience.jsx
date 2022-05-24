@@ -72,7 +72,7 @@ const RegisterExperience = ({ goToNext, onBack }) => {
       <OnboardingTrack
         onBack={onBack}
         goToNext={goToNext}
-        data={{ experiences }}
+        data={{ experience: experiences }}
         track="40%"
         buttonText="Next, Add education"
       />

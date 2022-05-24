@@ -31,39 +31,39 @@ const RegisterForm = ({ goToNext }) => {
         />
         </div>*/}
         
-          <div class="relative mb-2 mt-5">
+          <div className="relative mb-2 mt-5">
                        <input id="First name" name="Firstrst name" 
                         onChange={(e) => {
                           setFirstName(e.target.value);
                         }}
-                       type="text" class="peer h-10 w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
-                       <label for="First name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">First Name</label>
+                       type="text" className="peer h-10 w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="First name" className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">First Name</label>
           </div>
-          <div class="relative mb-2 mt-5">
+          <div className="relative mb-2 mt-5">
                        <input id="Last name" name="Last name" 
                         onChange={(e) => {
                           setLastName(e.target.value);
                         }}
-                       type="text" class="peer h-10 w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
-                       <label for="Last name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Last Name</label>
+                       type="text" className="peer h-10 w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="Last name" className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Last Name</label>
                   </div>
         
         
-        <div class="relative mb-2 mt-5">
+        <div className="relative mb-2 mt-5">
                        <input id="Email" name="Email" 
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
-                       type="email" class="peer h-10  w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
-                       <label for="Email" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Email</label>
+                       type="email" className="peer h-10  w-96 border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="Email" className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Email</label>
                   </div>
-                  <div class="relative mb-2 mt-5">
+                  <div className="relative mb-2 mt-5">
                        <input id="Password" name="Password" 
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
-                       type="password" class="peer h-10 w-96  border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
-                       <label for="Password" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Password</label>
+                       type="password" className="peer h-10 w-96  border-b-2 border-gray-300 text-dark-blue placeholder-transparent focus:outline-none focus:border-green-cyan" placeholder="‏‏‎ ‎" />
+                       <label for="Password" className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-dark-blue peer-focus:text-base">Password</label>
                   </div>
       <button
         className="rounded-lg border border-solid border-green-cyan text-[#fff] bg-green-cyan m-10 p-2 w-64 font-bold"

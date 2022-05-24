@@ -11,9 +11,11 @@ router.post("/upload_avatar", upload.single("avatar"), authController.upload_ava
 router.get("/get_user/:_id", authController.get_user);
 router.get("/get_users", authController.get_users);
 router.get("/get_professionals", authController.get_professionals);
+router.post("/get_professionals_with_filter", authController.get_professionals_with_filter);
 router.get("/get_professionals_by_seach/:search", authController.get_professionals_by_seach);
 router.get("/get_clients", authController.get_clients);
 router.get("/get_clients_by_seach/:search", authController.get_clients_by_seach);
+router.post("/post_comment", authController.post_comment);
 // router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 // router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/failed_auth" }), authController.google_callback);
 // router.get("/failed_auth", authController.failed_auth);

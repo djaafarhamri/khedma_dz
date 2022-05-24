@@ -10,9 +10,8 @@ const handleErrors = (error) => {
 };
 
 module.exports.add_service = async (req, res) => {
-  const image = req.file.path
-  const { name, description, price, duration, category, user } =
-  req.body;
+  const image = req.file.path;
+  const { name, description, price, duration, category, user } = req.body;
   try {
     const service = await Service.create({
       name,
@@ -21,7 +20,7 @@ module.exports.add_service = async (req, res) => {
       duration,
       category,
       created_by: user,
-      image
+      image,
     });
     res.status(200).json({ service: service._id });
   } catch (err) {
@@ -88,27 +87,14 @@ module.exports.get_service = async (req, res) => {
   }
 };
 
-
-  module.exports.getServices = async (req, res) => {
-    try {
-      if (
-        req.query.search !== null &&
-        req.query.search !== "" &&
-        req.query.search !== undefined &&
-        req.query.search !== "null"
-      ) {
-        const regex = new RegExp(escapeRegex(req.query.search), "gi");
-        let services = await Service.find({
-          title: regex,
-        });
-
-        res.status(200).json(services);
-      } else {
-          let services = await Service.find();
-          res.status(200).json(services);
-      }
-    } catch (e) {
-      console.log(e);
-      res.status(404).json("no services found");
-    }
-  };
+module.exports.getServices = async (req, res) => {
+  const { _id } = req.params;
+  try {
+    let services = await Service.find({ created_by: _id });
+    console.log(services);
+    res.status(200).json(services);
+  } catch (e) {
+    console.log(e);
+    res.status(404).json("no services found");
+  }
+};

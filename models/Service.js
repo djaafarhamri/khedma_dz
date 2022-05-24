@@ -27,8 +27,7 @@ const serviceSchema = mongoose.Schema(
       required: [true, "please enter a category"],
     },
     created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
       required: [true, "please enter a user"],
     },
     created_at: {

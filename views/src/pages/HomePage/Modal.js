@@ -38,17 +38,17 @@ const Modal = ({ setModalOn, setChoice }) => {
     <div className="   bg-amber-50 opacity-80 fixed inset-0 z-40  ">
       <div className="flex h-screen justify-center items-center ">
         <div className="flex-col justify-center  bg-white py-12 px-24 border-4 border-dark-blue rounded-xl ">
-          <div class="relative mb-2">
+          <div className="relative mb-2">
             <input
               id="email"
               name="email"
               type="text"
-              class="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan"
+              className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-green-cyan"
               placeholder="."
             />
             <label
               for="email"
-              class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+              className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
             >
               Email address
             </label>
@@ -76,7 +76,7 @@ const Modal = ({ setModalOn, setChoice }) => {
 export default Modal;*/
 import React from "react";
 
-export default function Modal() {
+export default function Modal({ setName, setJob, setLocation, setMinPrice, setMaxPrice }) {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
@@ -114,52 +114,57 @@ export default function Modal() {
                 <div className="flex  justify-center items-center ">
                 <div className="flex-col justify-center space-y-4 bg-white py-6 px-12 lg:py-12 lg:px-24 ">
                   <div>
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Name</label>
+                  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-dark-blue">Name</label>
                  <input
                   type="text"
-                  class="input"
+                  className="input"
                   id="exampleFormControlInput1"
                   placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
                   />
                   </div>
                   
                   <div>
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Location</label>
+                  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-dark-blue">Location</label>
                  <input
                   type="text"
-                  class="input "
+                  className="input "
                   id="exampleFormControlInput1"
                   placeholder="Location"
+                  onChange={(e) => setLocation(e.target.value)}
                   />
                   </div>
 
                   <div>
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Job</label>
+                  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-dark-blue">Job</label>
                  <input
                   type="text"
-                  class="input"
+                  className="input"
                   id="exampleFormControlInput1"
                   placeholder="Job"
+                  onChange={(e) => setJob(e.target.value)}
                   />
                   </div>
                   <h1 className="text-dark-blue font-semibold text-xl ">price</h1>
                   <div className="flex">
                   <div>
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Minimum</label>
+                  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-dark-blue">Minimum</label>
                  <input
                   type="text"
-                  class="input"
+                  className="input"
                   id="exampleFormControlInput1"
                   placeholder="Min-Price"
+                  onChange={(e) => setMinPrice(e.target.value)}
                   />
                   </div>
                   <div>
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-dark-blue">Maximum</label>
+                  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-dark-blue">Maximum</label>
                  <input
                   type="text"
-                  class="input"
+                  className="input"
                   id="exampleFormControlInput1"
                   placeholder="Max-Price"
+                  onChange={(e) => setMaxPrice(e.target.value)}
                   />
                   </div>
                   </div>
